@@ -1,5 +1,5 @@
 const express = require("express");
-const { check, validationResult} = require("express-validator/check");
+const { check, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
@@ -156,4 +156,22 @@ router.post(
       }
     });
 
+
+  router.post("/update", auth, async (req, res) => {
+      await User.findByIdAndUpdate(
+        req.user.id,
+        req.body, {new:true},
+        function(err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(result);
+          }
+        }
+      );
+    });
+
+
+
+  
 module.exports = router;

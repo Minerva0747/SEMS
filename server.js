@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const user = require("./routes/user");
 const InitiateMongoServer = require("./config/db");
 
+
 InitiateMongoServer();
 
 const app = express()
@@ -28,6 +29,9 @@ app.get("/", (req, res) => {
   });
 
   app.use("/user", user);
+
+
+
 
 
   app.listen(PORT, (req, res) => {
