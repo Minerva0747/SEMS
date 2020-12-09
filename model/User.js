@@ -36,7 +36,17 @@ const UserSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
+  },
+  eventManagedID: {
+    type: String,
+    required : false
+  },
+
+  eventParticipatedID :{
+    type: [String],
+    required : false
   }
+
 });
 
 module.exports = mongoose.model("user", UserSchema);
