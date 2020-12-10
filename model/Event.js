@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const EventSchema = mongoose.Schema({
-  eventID: {
-    type: String,
-    required: true
-  },
   eventName: {
     type: String,
     required: true
@@ -15,11 +11,11 @@ const EventSchema = mongoose.Schema({
       required : true
   },
   eventStartDate:{
-    type : date,
+    type : Date,
     required : true
   },
   eventEndDate:{
-      type: date,
+      type: Date,
       required : true
   },
   venue : {
@@ -48,7 +44,29 @@ const EventSchema = mongoose.Schema({
   photosImage : {
     type : [String],
     required : false
-  }
+  },
+
+  eventApproval : {
+    type: Boolean,
+    default : false
+  },
+
+  eventManagerID: [{
+    type : mongoose.ObjectId,
+    ref: 'Event'
+  }]
+  ,
+
+  eventParticipaterID: [{
+    type :mongoose.ObjectId,
+    ref: 'Event'
+  }],
+
+  eventVolunteerID: [{
+    type :mongoose.ObjectId,
+    ref: 'Event'
+  }]
+  
 });
 
 module.exports = mongoose.model("event", EventSchema);

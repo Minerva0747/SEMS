@@ -37,15 +37,6 @@ const UserSchema = mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  eventManagedID: {
-    type: String,
-    required : false
-  },
-
-  eventParticipatedID :{
-    type: [String],
-    required : false
-  }
 
 });
 

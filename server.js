@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const user = require("./routes/user");
+const event = require("./routes/event");
 const InitiateMongoServer = require("./config/db");
 
 
@@ -29,6 +30,7 @@ app.get("/", (req, res) => {
   });
 
   app.use("/user", user);
+  app.use("/event", event);
 
 
 
