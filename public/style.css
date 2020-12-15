@@ -1,0 +1,99 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    
+    background-image: url("bground.jpg");
+    filter: blur(8px);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.myform{
+  background-color: rgb(253, 250, 250); 
+  background-color: rgba(255, 255, 255, 1); 
+  color: rgb(5, 5, 5);
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 500px;
+  height:550px;
+  padding: 20px;
+}
+.myform2{
+    background-color: rgb(253, 250, 250); 
+    background-color: rgba(255, 255, 255, 1); 
+    color: rgb(5, 5, 5);
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 500px;
+    height:700px;
+    padding-top: 5px;
+    padding-left: 22px;
+  }
+.any{
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.box {
+    float: left;
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom:15px;
+    height: 50px;
+    text-align:center;
+}
+.box2 {
+    float: left;
+    width: 50%;
+    text-align:center;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+input[type=text], input[type=password],input[type=email],input[type=name] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #2832C2;
+    color: rgb(255, 255, 255);
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    
+    
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
