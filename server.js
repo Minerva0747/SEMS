@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const user = require("./routes/user");
 const event = require("./routes/event");
 const InitiateMongoServer = require("./config/db");
+const cookieParser = require('cookie-parser');
 
 
 InitiateMongoServer();
@@ -10,6 +11,15 @@ InitiateMongoServer();
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
+app.use(cookieParser());
+
+app.use(function(req, res, next) {  
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+res.header('Access-Control-Allow-Credentials', true);
+res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  next();
+});  
 
 const indexRouter = require('./routes/index')
 const signupRouter = require('./routes/signup')
@@ -19,6 +29,8 @@ const profileRouter = require('./routes/profile')
 app.set('view engine', 'ejs')
 app.set('views',__dirname + '/views')
 app.set('layout', 'layouts/layout')
+
+
 
 app.use(expressLayouts)
 app.use(express.static('public'))

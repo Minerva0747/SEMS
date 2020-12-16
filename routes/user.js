@@ -124,15 +124,12 @@ router.post(
           payload,
           "randomString",
           {
-            expiresIn: 3600
+            expiresIn: 86400
           },
           (err, token) => {
             if (err) throw err;
-            res.redirect('/home');
-            res.status(200).json({
-              token
-            });
-           
+            res.cookie( 'token', token);
+            res.redirect('/profile');
           }
         );
       } catch (e) {
@@ -144,32 +141,87 @@ router.post(
     }
   );
 
+  var remove_empty = function ( target ) {
 
-
-  router.get("/profile", auth, async (req, res) => {
-      try {
-        // request.user is getting fetched from Middleware after token authentication
-        const user = await User.findById(req.user.id);
-        res.json(user);
-      } catch (e) {
-        res.send({ message: "Error in Fetching user" });
-      }
-    });
-
-
-  router.post("/update", auth, async (req, res) => {
-      await User.findByIdAndUpdate(
-        req.user.id,
-        req.body, {new:true},
-        function(err, result) {
-          if (err) {
-            res.send(err);
-          } else {
-            res.send(result);
-          }
+    Object.keys( target ).map( function ( key ) {
+  
+      if ( target[ key ] instanceof Object ) {
+  
+        if ( ! Object.keys( target[ key ] ).length && typeof target[ key ].getMonth !== 'function') {
+  
+          delete target[ key ];
+  
         }
-      );
-    });
+  
+        else {
+  
+          remove_empty( target[ key ] );
+  
+        }
+  
+      }
+  
+      else if ( target[ key ] === null ) {
+  
+        delete target[ key ];
+  
+      }
+  
+    } );
+  
+  
+    return target;
+  
+  };
+
+
+router.post("/update", auth, async (req, res) => {
+
+    updateQuery = {};
+
+    if(req.body.name)
+    {
+      updateQuery.name = req.body.name;
+    }
+
+    if(req.body.email)
+    {
+      updateQuery.email = req.body.email;
+    }
+
+    if(req.body.phoneNumber)
+    {
+      updateQuery.phoneNumber = req.body.phoneNumber;
+    }
+
+    if(req.body.address)
+    {
+      updateQuery.address = req.body.address;
+    }
+
+    if(req.body.school)
+    {
+      updateQuery.school = req.body.school;
+    }
+
+    if(req.body.class)
+    {
+      updateQuery.class = req.body.class;
+    }
+
+    await User.findByIdAndUpdate(
+      req.user.id,
+      updateQuery, {new:true},
+      function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.redirect("/profile");
+        }
+      }
+    );
+  });
+
 
 
 

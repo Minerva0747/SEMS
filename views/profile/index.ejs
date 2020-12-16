@@ -21,39 +21,35 @@
             <img src="avatar1.png" alt="logo"  height="70%" style="padding-left:110px;padding-top:60px;">
         </div>
         <div class="column right">
-          <h1> Nur Farah binti Shahir 
+          <h1> <%=  user.name %>
             <button class="bluebutton" onclick="location.href='/profile/update';"
             style="font-size:medium;float:right;margin-right:6em;width:15em;" >
-              UPDATE PROFILE</button> 
+              UPDATE PROFILE</button>
           </h1>
-
-          
-
           <table id="users">
             <tr>
               <td>Student ID</td>
-              <td style="text-align:right;">1171303197</td>
+              <td style="text-align:right;"><%= user.roleID %></td>
             </tr>
             <tr>
               <td>Email</td>
-              <td style="text-align:right;">hazwanmsalleh@gmail.com</td>
+              <td style="text-align:right;"><%= user.email %></td>
             </tr>
             <tr>
               <td>Phone Number</td>
-              <td style="text-align:right;">+601132040538</td>
+              <td style="text-align:right;"><%= user.phoneNumber %></td>
             </tr>
             <tr>
               <td>Address</td>
-              <td style="text-align:right;">No. 28, Jalan Ampang Hilir, Taman Angsana Hilir, 
-                55100 Kuala Lumpur</td>
+              <td style="text-align:right;"><%= user.address %></td>
             </tr>
             <tr>
               <td>School</td>
-              <td style="text-align:right;">SMK Aminuddin Baki</td>
+              <td style="text-align:right;"><%= user.school %></td>
             </tr>
             <tr>
               <td>Class</td>
-              <td style="text-align:right;">5 Amanah</td>
+              <td style="text-align:right;"><%= user.class  %></td>
             </tr>
             <tr>
           </table>

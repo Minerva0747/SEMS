@@ -19,36 +19,28 @@
     <h3> UPDATE PROFILE </h3>
     <hr class="new1">
     <div class="breakform ">
-        <form action="/user/signup" method="POST" >
+        <form action="/user/update" method="POST" >
             <label for="id"style="text-align:left;">FULL NAME</label><br>
-            <input type="name" placeholder="Enter Full Name" id = "name" name="name" required>
-        <br>
-            <label for="id"style="text-align:left;">STUDENT ID</label><br>
-            <input type="text" placeholder="Enter Student ID" id = "roleID" name="roleID" required>
+            <input type="name" placeholder="Enter Full Name" id = "name" name="name" >
         <br>
             <label for="id"style="text-align:left;">EMAIL</label><br>
-            <input type="email" placeholder="Enter Full Name" id = "email" name="email" required>
-        <br>
-            <label for="id"style="text-align:left;">PASSWORD</label><br>
-            <input type="password" placeholder="Enter Password" id = "password" name="password" required>
+            <input type="email" placeholder="Enter Email" id = "email" name="email" >
         <br>
             <label for="id"style="text-align:left;">PHONE NUMBER</label><br>
-            <input type="text" placeholder="Enter Phone Number" id = "phone" name="phone" required>
+            <input type="text" placeholder="Enter Phone Number" id = "phoneNumber" name="phoneNumber" >
         <br>
             <label for="id"style="text-align:left;">ADDRESS</label><br>
-            <input type="text" placeholder="Enter Address" id = "add" name="add" required>
+            <input type="text" placeholder="Enter Address" id = "address" name="address" >
         <br>
             <label for="id"style="text-align:left;">SCHOOL</label><br>
-            <input type="text" placeholder="Enter Phone Number" id = "school" name="school" required>
+            <input type="text" placeholder="Enter Phone Number" id = "school" name="school" >
         <br>
             <label for="id"style="text-align:left;">CLASS</label><br>
-            <input type="text" placeholder="Enter Class" id = "class" name="class" required>
-        </form>
-
-        <div>
-            <button class="bluebutton"  style="margin-top: 3em;" >UPDATE PROFILE</button>
+            <input type="text" placeholder="Enter Class" id = "class" name="class" >
+ 
+            <button class="bluebutton" type="submit" style="margin-top: 3em;" >UPDATE PROFILE</button>
             <button class="whitebutton" onclick="location.href='/profile';" style="margin-bottom: 5em;">Cancel</button>
-        </div>
 
+        </form>
     </div>
 </div>
