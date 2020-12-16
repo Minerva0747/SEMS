@@ -128,9 +128,11 @@ router.post(
           },
           (err, token) => {
             if (err) throw err;
+            res.redirect('/profile');
             res.status(200).json({
               token
             });
+            res.redirect('/profile');
           }
         );
       } catch (e) {

@@ -24,12 +24,8 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
-<<<<<<< Updated upstream
-
-=======
 app.use('/home', homeRouter)
 app.use('/profile', profileRouter)
->>>>>>> Stashed changes
 app.use('/public', express.static('public'))
 
 app.use(express.static(__dirname + '/public'));
