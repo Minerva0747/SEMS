@@ -5,5 +5,9 @@ router.get('/', (req, res) => {
     res.render('profile/index')
 })
 
+router.get('/update', (req, res) => {
+    res.render('profile/update')
+})
+
 
 module.exports = router

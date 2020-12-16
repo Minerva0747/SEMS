@@ -83,19 +83,32 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
     box-sizing: border-box;
   }
   
-  button {
-    background-color: #2832C2;
+  .bluebutton {
+    background-color: #1f37a1;
     color: rgb(255, 255, 255);
     padding: 14px 20px;
     border: none;
     cursor: pointer;
     width: 30%;
-    
+  }
+  .whitebutton{
+    background-color: white;
+    color: black;
+    padding: 11px 20px;
+    border: black 1px solid;
+    cursor: pointer;
+    width: 20%;
     
   }
-  
+  .whitebutton:hover {
+    opacity: 0.8;
+    background-color: rgb(161, 161, 161);
+  }
   button:hover {
     opacity: 0.8;
+  }
+  .updateprof{
+    width: 15em;
   }
 
   .header {
@@ -170,7 +183,7 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
   .column{
     float: left;
     padding: 20px;
-    height: 520px;
+    height: 550px;
   }
   .left{
     width: 35%;
@@ -199,4 +212,37 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
     text-align: left;
     color: white;
   }
+
+  .updateform{
+    padding-top: 3em;
+    padding-left: 10em;
+    
+  }
   
+  hr.new1 {
+    border-top: 1px solid black;
+    width:20em;
+    float:left;
+    box-shadow: 1px 1px #888888;
+  }
+
+  hr.login {
+    border-top: 1px solid black;
+    width:50%;
+    float:left;
+    box-shadow: 1px 1px #888888;
+  }
+
+  hr.login1 {
+    border-top: 1px solid rgb(177, 171, 171);
+    width:50%;
+    float:left;
+    box-shadow: 1px 1px #bdb6b6;
+  }
+
+  .breakform{
+    margin-top : 6em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    width:50%;
+  }
