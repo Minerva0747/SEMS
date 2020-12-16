@@ -22,10 +22,14 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 app.use('/', indexRouter)
 app.use('/signup', signupRouter)
+
 app.use('/public', express.static('public'))
+
+app.use(express.static(__dirname + '/public'));
 
 const PORT = process.env.PORT || 3000;
 
+app.use(bodyParser.urlencoded({limit : '10mb' , extended : false}));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
@@ -34,6 +38,7 @@ app.get("/", (req, res) => {
 
   app.use("/user", user);
   app.use("/event", event);
+  
 
 
 

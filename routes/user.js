@@ -69,9 +69,7 @@ router.post(
                 },
                 (err, token) => {
                     if (err) throw err;
-                    res.status(200).json({
-                        token
-                    });
+                    res.redirect('/');
                 }
             );
         } catch (err) {
