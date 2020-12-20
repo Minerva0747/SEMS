@@ -141,40 +141,7 @@ router.post(
     }
   );
 
-  var remove_empty = function ( target ) {
-
-    Object.keys( target ).map( function ( key ) {
-  
-      if ( target[ key ] instanceof Object ) {
-  
-        if ( ! Object.keys( target[ key ] ).length && typeof target[ key ].getMonth !== 'function') {
-  
-          delete target[ key ];
-  
-        }
-  
-        else {
-  
-          remove_empty( target[ key ] );
-  
-        }
-  
-      }
-  
-      else if ( target[ key ] === null ) {
-  
-        delete target[ key ];
-  
-      }
-  
-    } );
-  
-  
-    return target;
-  
-  };
-
-
+ 
 router.post("/update", auth, async (req, res) => {
 
     updateQuery = {};
