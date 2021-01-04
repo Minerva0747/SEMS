@@ -1,0 +1,58 @@
+<div class="header">
+    <div class="topnav">
+        <div class="navlogo">
+            <img  src="MySchool.png" 
+            alt="logo"  height="65" 
+            style="float:left;padding-right:2em;padding-top:6px;">
+        </div>
+    
+        <a href="/home">HOME</a>
+        <a href="/participation">PARTICIPATION</a>
+        <a class="active">MyEVENT</a>
+        <a href="#">VOLUNTEER</a>
+        <a href="/profile">PROFILE</a>
+        <a href="#">LOG-OUT</a>
+      </div>
+</div>
+<div class="updateform">
+    <h3>Create New Event </h3>
+    <hr class="new1">
+</div>
+<div class="updateform">
+    <div class="breakform ">
+        <form action="/myevent/createmyevent" method="POST">
+            <label for="id" style="text-align:left;">EVENT TITLE (cannot be changed)</label><br>
+            <input type="name" placeholder="Title" id = "title" name="title" >
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">ORGANIZER</label><br>
+            <input type="email" placeholder="by.." id = "organizer" name="organizer" >
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">EVENT START</label><br>
+            <input type="date"  id = "date" name="date" >
+            <input type="time"  id = "time" name="time" >
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">EVENT END</label><br>
+            <input type="date" placeholder="Enter Phone Number" id = "date" name="date" >
+            <input type="time"  id = "time" name="time" >
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">VENUE</label><br>
+            <input type="text" placeholder="Venue" id = "venue" name="venue" >
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">ACTIVITIES</label><br>
+            <textarea rows="5" cols="50" placeholder="Enter..." name="comment" form="actvtform"style="border:1px solid #BCBCBC;padding:1em;"></textarea>
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">DESCRIPTION</label><br>
+            <textarea rows="5" cols="50" placeholder="Enter..." name="comment" form="actvtform"style="border:1px solid #BCBCBC;padding:1em;"></textarea>
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">How many volunteer do you need?</label><br>
+            <input type="number" id="quantity" name="quantity" min="0" max="20">
+        <br>
+            <label for="id"style="text-align:left;padding-top:1em;">Upload Poster</label><br>
+            <input type="file" id="myFile" name="filename">
+        <br>
+            <button class="bluebutton" type="submit" style="margin-top: 3em;" >SUBMIT</button>
+            <button class="whitebutton" onclick="location.href='/home';" style="margin-bottom: 5em;">Cancel</button>
+
+        </form>
+    </div>
+</div>
