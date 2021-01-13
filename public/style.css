@@ -95,10 +95,9 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
     background-color: white;
     color: black;
     padding: 11px 20px;
-    border: black 1px solid;
+    border: #707070 1px solid;
     cursor: pointer;
     width: 20%;
-    
   }
   .whitebutton:hover {
     opacity: 0.8;
@@ -266,15 +265,108 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
     border: none;
     color: black;
     padding: 2em;
-    margin : 2em;
     font-size: 16px;
     cursor: pointer;
-    width: 16em;
-    height: 17em;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
     border: 1px solid #707070;
   }
   .createBtn:hover {
     background-color: #A2977D;
     color: white;
+  }
+
+  .eventShape{
+    background-color: #F8F5EE;
+    border-radius: 15px;
+    width: 25em;
+    height: 25em;
+    margin-left: 24%;
+    position: relative;
+  }
+
+  .eventBtn{
+    background-color: #3061B4; 
+    border: none;
+    color: white;
+    padding: 7px 32px;
+    margin-top: 7px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .column1 {
+    float: left;
+    width: 23%;
+    padding: 14px;
+    margin-bottom: 3em;
+  }
+  .row1:after {
+    content: "";
+    display: table;
+    clear: both; 
+  }
+
+  .column2 {
+    float: left;
+    width: 40%;
+    padding: 14px;
+    margin :2em;
+  }
+  .row2:after {
+    content: "";
+    display: table;
+    clear: both; 
+  }
+  .pDetails{
+    font-size: 150%;
+  }
+
+  .brownFooter{
+    background-color: #B3AB99;
+    height: 40px;
+    width: 100%;
+    padding-top: 0.62em;
+    padding-left:6em ;
+    color:white;
+    font-size:100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+
+  .volunteerbox{
+    background-color: #F8F5EE;
+    width:80%;
+    height:auto;
+    margin-left:12em;
+    margin-right:12em;
+    margin-bottom: 4em;
+    padding : 2em;
+  }
+
+  .column3 {
+    float: left;
+    padding: 10px;
+    
+  }
+  
+  .left3 {
+    width: 40%;
+  }
+  .right3 {
+    width: 60%;
+  }
+  .row3:after {
+    content: "";
+    display: table;
+    clear: both;
   }

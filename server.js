@@ -27,6 +27,7 @@ const homeRouter = require('./routes/home')
 const profileRouter = require('./routes/profile')
 const participationRouter = require('./routes/participation')
 const myeventRouter = require('./routes/myevent')
+const volunteerRouter = require('./routes/volunteer')
 
 app.set('view engine', 'ejs')
 app.set('views',__dirname + '/views')
@@ -43,6 +44,7 @@ app.use('/profile', profileRouter)
 app.use('/public', express.static('public'))
 app.use('/participation', participationRouter)
 app.use('/myevent', myeventRouter)
+app.use('/volunteer', volunteerRouter)
 
 app.use(express.static(__dirname + '/public'));
 
