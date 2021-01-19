@@ -19,24 +19,6 @@ router.get("/", auth, async (req, res) => {
   });
 
 
-router.post("/update", auth, async (req, res) => {
-
-
-  res.send(req.body);
-  
-    await User.findByIdAndUpdate(
-      req.user.id,
-      req.body, {new:true},
-      function(err, result) {
-        if (err) {
-          res.send(err);
-        } else {
-          res.send(req.body);
-        }
-      }
-    );
-  });
-
 
 router.get('/update', (req, res) => {
     res.render('profile/update')

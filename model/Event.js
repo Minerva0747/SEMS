@@ -57,10 +57,11 @@ const EventSchema = mongoose.Schema({
   }]
   ,
 
-  eventParticipaterID: [{
-    type :mongoose.ObjectId,
-    ref: 'Event'
+  eventParticipant: [{
+    eventParticipantID : { type : mongoose.ObjectId , ref: 'Event'},
+    attendanceStatus : { Boolean, defaul : false}
   }],
+
 
   eventVolunteerID: [{
     type :mongoose.ObjectId,

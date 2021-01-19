@@ -1,11 +1,3 @@
-<<<<<<< Updated upstream
-const express = require('express')
-const router = express.Router()
-
-router.get('/', (req, res) => {
-    res.render('volunteer/index')
-})
-=======
 const express = require("express");
 const { check, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
@@ -26,7 +18,6 @@ router.get("/", auth, async (req, res) => {
   });
 
 
->>>>>>> Stashed changes
 
 
 module.exports = router

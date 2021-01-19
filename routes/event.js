@@ -9,6 +9,8 @@ const User = require("../model/User");
 const Event= require("../model/Event");
 const { response } = require("express");
 
+
+// Create new Event Student Side
 router.post("/create", auth, async (req, res) => {
     const {
         eventName,
@@ -27,7 +29,7 @@ router.post("/create", auth, async (req, res) => {
         });
         if (event) {
             return res.status(400).json({
-                msg: "User Already Exists"
+                msg: "Event Already Exist"
             });
         }
 
@@ -52,6 +54,35 @@ router.post("/create", auth, async (req, res) => {
 
   });
 
+  // Get all event managed by Student side
+  router.get("/", auth, async (req, res) => {
+    try {
+      // request.user is getting fetched from Middleware after token authentication
+      const event = await Event.find({eventManagerID : req.user.id});
+      res.render('myEvent/index', {event : event})
+    } catch (e) {
+      res.send({ message: "Error in Fetching user" });
+    }
+  });
+
+
+  router.get("/:id", auth, async (req, res) => {
+    let event
+    try{
+        event = await Event.findById(req.params.id);
+        res.render('/myEvent/detail', {event : event});
+    } catch{
+        if(event == null){
+            res.redirect('/')
+        } else{
+            res.redirect('/')
+        }
+    }
+});
+
+
+
+  // Update specific event Student Side
   router.put("/:id", auth, async (req, res) => {
     let event
     try{
@@ -92,7 +123,7 @@ router.post("/create", auth, async (req, res) => {
           updateQuery.description = req.body.description;
         }
         
-   await User.findByIdAndUpdate(
+   await Event.findByIdAndUpdate(
       req.params.id,
       updateQuery, {new:true},
       function(err, result) {
@@ -113,7 +144,7 @@ router.post("/create", auth, async (req, res) => {
     }
 });
 
-
+// Cancel Event Student Side
   router.delete("/:id", auth, async (req, res) => {
       let event
       try{
@@ -128,6 +159,8 @@ router.post("/create", auth, async (req, res) => {
           }
       }
   });
+
+
 
 
 
