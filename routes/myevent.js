@@ -9,10 +9,21 @@ router.get('/createmyevent', (req, res) => {
     res.render('myevent/createmyevent')
 })
 
+router.get('/myeventdetail', (req, res) => {
+    res.render('myevent/myeventdetail')
+})
+
 router.post('/createmyevent', (req, res) => {
     res.redirect('/myevent')
 })
 
 
+router.get('/updateMyevent', (req, res) => {
+    res.render('myevent/updateMyevent')
+})
+
+router.get('/viewattendance', (req, res) => {
+    res.render('myevent/viewattendance')
+})
 
 module.exports = router

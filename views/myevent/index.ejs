@@ -17,11 +17,32 @@
 <div class ="homevent">
   Manage MyEvent
   <hr>
-  Today Date -
+  Today Date - 
+  <script>
+    var curday = function(sp){
+    today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //As January is 0.
+    var yyyy = today.getFullYear();
+    
+    if(dd<10) dd='0'+dd;
+    if(mm<10) mm='0'+mm;
+    return (dd+sp+mm+sp+yyyy);
+    };
+   
+    document.write(curday('/'));
+  </script>
   <br>
   
 </div>
 <div class="row1">
+  <div class="column1" >
+    <div class="eventShape">
+        <p style="text-align:center; padding-top:10px;">English Language Day</p>
+        <img src="eng1.jpg" alt="eng poster" width="350" >
+        <button class="eventBtn" onclick="location.href='/myevent/myeventdetail';">DETAILS</button>
+    </div>
+</div>
     <div class="column1" >
         <div class="eventShape">
             <button class="createBtn" onclick="location.href='/myevent/createmyevent';" >Create New Event ?<br>
@@ -29,7 +50,8 @@
           </button>
         </div>
     </div>
-  </div>
+
+</div>
 <div class ="homevent">
     Manage MyEvent Volunteer
     <hr>

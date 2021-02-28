@@ -84,13 +84,14 @@ input[type=text], input[type=password],input[type=email],input[type=name] {
   }
   
   .bluebutton {
-    background-color: #1f37a1;
+    background-color: #3061B4;
     color: rgb(255, 255, 255);
     padding: 14px 20px;
     border: none;
     cursor: pointer;
     width: 30%;
   }
+  
   .whitebutton{
     background-color: white;
     color: black;

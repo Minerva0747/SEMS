@@ -129,7 +129,7 @@ router.post(
           (err, token) => {
             if (err) throw err;
             res.cookie( 'token', token);
-            res.redirect('/profile');
+            res.redirect('/home');
           }
         );
       } catch (e) {

@@ -7,8 +7,8 @@
         </div>
     
         <a href="/home">HOME</a>
-        <a class="active">PARTICIPATION</a>
-        <a href="/myevent">MyEVENT</a>
+        <a href="/participation">PARTICIPATION</a>
+        <a class="active">MyEVENT</a>
         <a href="/volunteer">VOLUNTEER</a>
         <a href="/profile">PROFILE</a>
         <a href="#">LOG-OUT</a>
@@ -16,23 +16,15 @@
 </div>
 <div class ="homevent">
     ENGLISH LANGUAGE DAY
+    <button class="bluebutton" onclick="location.href='';" style="width:8em;margin-left:1em;" >SIGN OFF</button>
+    <button class="bluebutton" onclick="location.href='/myevent/updateMyevent';" style="width:8em;margin-left:1em;" >UPDATE</button>
+
+    
+    <button class="bluebutton" type="submit" style="width:13em; float:right;margin-right:1em;background-color:#E16E6E" >CANCEL EVENT</button>
+    <button class="whitebutton"onclick="location.href='/myevent';" style="float:right;width:8em;margin-right:1em;">Back</button>
     <hr>
-    Today date - 
-    <script>
-        var curday = function(sp){
-        today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //As January is 0.
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-        return (dd+sp+mm+sp+yyyy);
-        };
-       
-        document.write(curday('/'));
-      </script>
-    <button class="whitebutton"onclick="location.href='/participation';" style="float:right;width:8em;">Back</button>
+    <button class="bluebutton" onclick="location.href='';" style="width:11em;margin-left:1em;" >Write QR Code</button>
+    <button class="bluebutton" onclick="location.href='/myevent/viewattendance';" style="width:11em;margin-left:1em;" >View Attendance</button>
 </div>
 <div class="row2">
     <div class="column2">
