@@ -1,3 +1,4 @@
+
 <div class="header">
     <div class="topnav">
         <div class="navlogo">
@@ -18,14 +19,19 @@
 <div class="biodata">
     <div class="row">
         <div class="column left">
-            <img src="avatar1.png" alt="logo"  height="70%" style="padding-left:110px;padding-top:60px;">
+            <img src="avatar1.png" alt="logo"  height="60%" style="padding-left:4em;padding-top:60px;">
+            
+            <button class="bluebutton" onclick="location.href='#';"
+            style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >
+              UPDATE PHOTO</button>
         </div>
-        <div class="column right">
-          <h1> <%=  user.name %>
+        <div class="column right" style="border-left: 1px solid rgb(78, 78, 78);height: 510px;">
+          <h2 style="margin-left: 1em;"> <%=  user.name %>
             <button class="bluebutton" onclick="location.href='/profile/update';"
-            style="font-size:medium;float:right;margin-right:6em;width:15em;" >
+            style="font-size:medium;float:right;margin-right:4em;width:13em;" >
               UPDATE PROFILE</button>
-          </h1>
+          </h2>
+          <br><br>
           <table id="users">
             <tr>
               <td>Student ID</td>
@@ -59,6 +65,47 @@
 
 </div>
 
+<div class="certList">
+  <table class="tablecert">
+    <tr style="background-color: #F6F2E9;">
+      <th style="padding: 15px;padding-left:2em;">No</th>
+      <th style="padding: 15px;">CERTIFICATE TITLE</th>
+      <th style="padding: 15px;">VIEW</th>
+    </tr>
+    <tr>
+      <td style="padding:15px;padding-left:2em;background-color: #dbd3bf;">1</td>
+      <td style="padding: 15px;background-color: #dbd3bf;">Poetry Competition</td>
+      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
+    </tr>
+    <tr>
+      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">2</td>
+      <td style="padding: 15px;background-color: #dbd3bf;">Creative Robotiics</td>
+      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
+    </tr>
+    <tr>
+      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">3</td>
+      <td style="padding: 15px;background-color: #dbd3bf;">Nasyid Berirama</td>
+      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
+    </tr>
+    <tr>
+      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">4</td>
+      <td style="padding: 15px;background-color: #dbd3bf;">Hackathon</td>
+      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
+  </tr>
+  
+
+  
+
+  <tr>
+    <td style="padding: 12px;height:6em;"></td>
+    <td style="padding: 12px;"></td>
+    <td style="padding: 12px;"></td>
+  </tr>
+  </table>
+  
+</div>
+
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>
+</div>

@@ -1,0 +1,59 @@
+<div class="header">
+    <div class="topnav">
+        <div class="navlogo">
+            <img  src="/public/MySchool.png" 
+            alt="logo"  height="65" 
+            style="float:left;padding-right:2em;padding-top:6px;">
+        </div>
+    
+        <a href="#" style="float:right;">LOG-OUT</a>
+        <a class="active" style="float:right;">APPROVAL</a>
+        <a href="/admin" style="float:right;">HOME</a>
+    </div>
+</div>
+
+<div class ="homevent">
+    EVENT TO APPROVE
+    <hr>
+    Today date - 
+    <script>
+        var curday = function(sp){
+        today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //As January is 0.
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) dd='0'+dd;
+        if(mm<10) mm='0'+mm;
+        return (dd+sp+mm+sp+yyyy);
+        };
+       
+        document.write(curday('/'));
+      </script>
+</div>
+
+
+<div class="row1">
+    <div class="column1" >
+        <div class="eventShape">
+            <p style="text-align:center; padding-top:10px;">English Language Day</p>
+            <img src="/public/eng1.jpg" alt="eng poster" width="350" >
+            <button class="eventBtn" onclick="location.href='/admin/toapprove';">DETAILS</button>
+        </div>
+    </div>
+    <div class="column1" >
+        <div class="eventShape">
+            <p style="text-align:center; padding-top:10px;">Code Hackathon</p>
+            <img src="/public/hackathon.jpg" alt="eng poster" width="350" >
+            <button class="eventBtn">DETAILS</button>
+        </div>
+    </div>
+    <div class="column1" >
+        
+    </div>
+  </div>
+
+
+<footer class="brownFooter">
+    © Copyright 2020 MySchool system | Designed by MMU
+</footer>

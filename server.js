@@ -28,6 +28,7 @@ const profileRouter = require('./routes/profile')
 const participationRouter = require('./routes/participation')
 const myeventRouter = require('./routes/myevent')
 const volunteerRouter = require('./routes/volunteer')
+const adminRouter = require('./routes/admin')
 
 app.set('view engine', 'ejs')
 app.set('views',__dirname + '/views')
@@ -45,6 +46,7 @@ app.use('/public', express.static('public'))
 app.use('/participation', participationRouter)
 app.use('/myevent', myeventRouter)
 app.use('/volunteer', volunteerRouter)
+app.use('/admin', adminRouter)
 
 app.use(express.static(__dirname + '/public'));
 

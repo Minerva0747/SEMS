@@ -14,6 +14,13 @@ router.get('/', (req, res) => {
   res.render('volunteer/index')
 })
 
+router.get('/managetask', (req, res) => {
+  res.render('volunteer/managetask')
+})
+
+router.get('/addtask', (req, res) => {
+  res.render('volunteer/addtask')
+})
 
 router.get("/", auth, async (req, res) => {
     try {

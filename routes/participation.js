@@ -9,6 +9,13 @@ const User = require("../model/User");
 const Event= require("../model/Event");
 const { response } = require("express");
 
+router.get('/epartdetail', (req, res) => {
+  res.render('participation/epartdetail')
+})
+
+router.get('/pastevent', (req, res) => {
+  res.render('participation/pastevent')
+})
 
 router.get("/", auth, async (req, res) => {
     try {
@@ -20,8 +27,7 @@ router.get("/", auth, async (req, res) => {
     }
   });
 
-
-router.get("/:id", auth, async (req, res) => {
+  router.get("/:id", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
       const event = await Event.findById(req.params.id);
@@ -30,6 +36,7 @@ router.get("/:id", auth, async (req, res) => {
       res.send({ message: "Error in Fetching user" });
     }
   });
+
 
 
 router.post("/:id",auth , async (req,res) => {
@@ -65,3 +72,5 @@ router.get('/epartdetail', (req, res) => {
 })
 
 module.exports = router
+
+

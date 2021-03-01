@@ -6,37 +6,42 @@
             style="float:left;padding-right:2em;padding-top:6px;">
         </div>
     
-        <a href="/home">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a class="active">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
+        <a href="#" style="float:right;">LOG-OUT</a>
+        <a href="/admin/approval" style="float:right;">APPROVAL</a>
+        <a href="/admin" style="float:right;">HOME</a>
+    </div>
 </div>
 <div class ="homevent">
-    English Language Day
-    <button class="bluebutton" onclick="location.href='';" style="width:8em;margin-left:1em;" >SIGN OFF</button>
-    <button class="bluebutton" onclick="location.href='/myevent/updateMyevent';" style="width:8em;margin-left:1em;" >UPDATE</button>
-
-    
-    <button class="bluebutton" type="submit" style="width:13em; float:right;margin-right:1em;background-color:#E16E6E" >CANCEL EVENT</button>
-    <button class="whitebutton"onclick="location.href='/myevent';" style="float:right;width:8em;margin-right:1em;">Back</button>
+    Mathematics Club Day
     <hr>
-    <button class="bluebutton" onclick="location.href='';" style="width:11em;margin-left:1em;" >Write QR Code</button>
-    <button class="bluebutton" onclick="location.href='/myevent/viewattendance';" style="width:11em;margin-left:1em;" >View Attendance</button>
+    Today date - 
+    <script>
+        var curday = function(sp){
+        today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //As January is 0.
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) dd='0'+dd;
+        if(mm<10) mm='0'+mm;
+        return (dd+sp+mm+sp+yyyy);
+        };
+       
+        document.write(curday('/'));
+      </script>
+
+
+    <button class="whitebutton"onclick="location.href='/admin/approval';" style="float:right;width:8em;">Back</button>
+    <form style="float:right;">
+        <button class="bluebutton" type="submit" style="width:11em; margin-right:1em;" >APPROVE EVENT</button>
+    </form>
+    
 </div>
 <div class="row2">
     <div class="column2">
-        <div>
+        
             <img src="/public/eng1.jpg" alt="eng poster" width="350" >
-            <br>
-            <form>
-                <label for="id"style="text-align:left;padding-top:1em;">Update Poster</label><br>
-                <input type="file" id="posterFile" name="poster">
-                <button style="margin-top:1em;">Submit</button>
-            </form>
-        </div>
+        
     </div>
     <div class="column2"style="border-left: 4px solid #707070;">
         <div class="pDetails">
