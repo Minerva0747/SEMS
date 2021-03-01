@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
 
+
 const User = require("../model/User");
 const Event= require("../model/Event");
 const { response } = require("express");
@@ -12,17 +13,37 @@ const { response } = require("express");
 
 // Create new Event Student Side
 router.post("/create", auth, async (req, res) => {
-    const {
+    let {
         eventName,
         organizedBy,
         eventStartDate,
+        eventStartTime,
         eventEndDate,
+        eventEndTime,
         venue,
         eventActivities,
         description,
         volunteerNeeded,
         eventManagerID = req.user.id
     } = req.body;
+    
+    eventStartTimeHour = eventStartTime.slice(0,2);
+    eventStartTimeMinute = eventStartTime.slice(3);
+
+    eventStartDate = new Date(eventStartDate);
+    eventStartDate.setHours(eventStartDate.getHours() + eventStartTimeHour);
+    eventStartDate.setMinutes(eventStartTimeMinute);
+
+
+        
+    eventEndTimeHour = eventEndTime.slice(0,2);
+    eventEndTimeMinute = eventEndTime.slice(3);
+
+    eventEndDate = new Date(eventEndDate);
+    eventEndDate.setHours(eventEndDate.getHours() + eventEndTimeHour);
+    eventEndDate.setMinutes(eventEndTimeMinute);
+
+
     try {
         let event = await Event.findOne({
             eventName
@@ -48,7 +69,6 @@ router.post("/create", auth, async (req, res) => {
         res.status(200).send("Successfully Create Event");
     }
     catch (err) {
-        console.log(err.message);
         res.status(500).send("Error in Saving");
     }
 
@@ -59,7 +79,7 @@ router.post("/create", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
       const event = await Event.find({eventManagerID : req.user.id});
-      res.render('myEvent/index', {event : event})
+      res.json(event);
     } catch (e) {
       res.send({ message: "Error in Fetching user" });
     }
@@ -70,7 +90,7 @@ router.post("/create", auth, async (req, res) => {
     let event
     try{
         event = await Event.findById(req.params.id);
-        res.render('/myEvent/detail', {event : event});
+        res.json(event);
     } catch{
         if(event == null){
             res.redirect('/')

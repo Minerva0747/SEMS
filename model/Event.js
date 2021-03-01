@@ -14,6 +14,7 @@ const EventSchema = mongoose.Schema({
     type : Date,
     required : true
   },
+
   eventEndDate:{
       type: Date,
       required : true
@@ -37,13 +38,23 @@ const EventSchema = mongoose.Schema({
   },
 
   posterImage : {
-      type : [String],
-      required : false
+    data: Buffer,
+    contentType: String
   },
 
-  photosImage : {
-    type : [String],
-    required : false
+  photosImageOne : {
+    data: Buffer,
+    contentType: String
+  },
+
+  photosImageTwo : {
+    data: Buffer,
+    contentType: String
+  },
+
+  photosImageThree : {
+    data: Buffer,
+    contentType: String
   },
 
   eventApproval : {

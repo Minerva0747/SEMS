@@ -20,40 +20,38 @@
 </div>
 <div class="updateform">
     <div class="breakform ">
-        <form action="/myevent/createmyevent" method="POST">
+        <form  action="/event/create" method="POST"  >
             <label for="id" style="text-align:left;">EVENT TITLE (cannot be changed)</label><br>
-            <input type="name" placeholder="Title" id = "title" name="title" >
+            <input type="text" placeholder="Title" id = "title" name="eventName" >
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">ORGANIZER</label><br>
-            <input type="email" placeholder="by.." id = "organizer" name="organizer" >
+            <input type="text" placeholder="by.." id = "organizer" name="organizedBy" >
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">EVENT START</label><br>
-            <input type="date"  id = "date" name="date" >
-            <input type="time"  id = "time" name="time" >
+            <input type="date"  id = "date" name="eventStartDate" >
+            <input type="time"  id = "time" name="eventStartTime" >
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">EVENT END</label><br>
-            <input type="date" placeholder="Enter Phone Number" id = "date" name="date" >
-            <input type="time"  id = "time" name="time" >
+            <input type="date" placeholder="Enter Phone Number" id = "date" name="eventEndDate" >
+            <input type="time"  id = "time" name="eventEndTime" >
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">VENUE</label><br>
             <input type="text" placeholder="Venue" id = "venue" name="venue" >
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">ACTIVITIES</label><br>
-            <textarea rows="5" cols="50" placeholder="Enter..." name="comment" form="actvtform"style="border:1px solid #BCBCBC;padding:1em;"></textarea>
+            <textarea rows="5" cols="50" placeholder="Enter..." name="eventActivities" style="border:1px solid #BCBCBC;padding:1em;"></textarea>
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">DESCRIPTION</label><br>
-            <textarea rows="5" cols="50" placeholder="Enter..." name="comment" form="actvtform"style="border:1px solid #BCBCBC;padding:1em;"></textarea>
+            <textarea rows="5" cols="50" placeholder="Enter..." name="description" style="border:1px solid #BCBCBC;padding:1em;"></textarea>
         <br>
             <label for="id"style="text-align:left;padding-top:1em;">How many volunteer do you need?</label><br>
-            <input type="number" id="quantity" name="quantity" min="0" max="20">
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">Upload Poster</label><br>
-            <input type="file" id="myFile" name="filename">
+            <input type="number" id="quantity" name="volunteerNeeded" min="0" max="20">
         <br>
             <button class="bluebutton" type="submit" style="margin-top: 3em;" >SUBMIT</button>
-            <button class="whitebutton" onclick="location.href='/home';" style="margin-bottom: 5em;">Cancel</button>
+            
 
         </form>
+        <button class="whitebutton" onclick="location.href='/home';" style="margin-bottom: 5em;">Cancel</button>
     </div>
 </div>
 

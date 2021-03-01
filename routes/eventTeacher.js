@@ -16,7 +16,7 @@ const { response } = require("express");
     try {
       // request.user is getting fetched from Middleware after token authentication
       const event = await Event.find({eventApproval : "false"});
-      res.render('myEventTeacher/index', {event : event})
+      res.json(event)
     } catch (e) {
       res.send({ message: "Error in Fetching user" });
     }
@@ -30,7 +30,7 @@ const { response } = require("express");
       let event
       try{
           event = await Event.findById(req.params.id);
-          res.render('/myEventTeacher/detail', {event : event});
+          res.json(event);
       } catch{
           if(event == null){
               res.redirect('/')
