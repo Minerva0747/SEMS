@@ -7,12 +7,23 @@
             style="float:left;padding-right:2em;padding-top:6px;">
         </div>
     
-        <a href="/home">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a href="/myevent">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a class="active">PROFILE</a>
-        <a href="#">LOG-OUT</a>
+        <form id="myform" action="/user/logout" method="POST">
+          <a
+            href="#"
+            onclick="document.getElementById('myform').submit()"
+            style="float: right"
+            >LOG-OUT</a
+          >
+        </form>
+    
+        <noscript>
+          <input type="submit" value="Submit form!" />
+        </noscript>
+        <a class="active"  style="float: right">PROFILE</a>
+        <a href="/volunteer" style="float: right">VOLUNTEER</a>
+        <a href="/myevent" style="float: right">MyEVENT</a>
+        <a href="/participation" style="float: right">PARTICIPATION</a>
+        <a href="/home" style="float: right">HOME</a>
       </div>
 </div>
 
@@ -20,10 +31,12 @@
     <div class="row">
         <div class="column left">
             <img src="avatar1.png" alt="logo"  height="60%" style="padding-left:4em;padding-top:60px;">
-            
+            <form>
+              
             <button class="bluebutton" onclick="location.href='#';"
             style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >
               UPDATE PHOTO</button>
+            </form>
         </div>
         <div class="column right" style="border-left: 1px solid rgb(78, 78, 78);height: 510px;">
           <h2 style="margin-left: 1em;"> <%=  user.name %>
@@ -66,6 +79,8 @@
 </div>
 
 <div class="certList">
+  <h3>CERTIFICATE SYSTEM</h3>
+  <hr>
   <table class="tablecert">
     <tr style="background-color: #F6F2E9;">
       <th style="padding: 15px;padding-left:2em;">No</th>
@@ -75,23 +90,9 @@
     <tr>
       <td style="padding:15px;padding-left:2em;background-color: #dbd3bf;">1</td>
       <td style="padding: 15px;background-color: #dbd3bf;">Poetry Competition</td>
-      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
+      <td style="padding: 15px;background-color: #dbd3bf;"><form><button class="bluebutton">View</button></form></td>
     </tr>
-    <tr>
-      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">2</td>
-      <td style="padding: 15px;background-color: #dbd3bf;">Creative Robotiics</td>
-      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
-    </tr>
-    <tr>
-      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">3</td>
-      <td style="padding: 15px;background-color: #dbd3bf;">Nasyid Berirama</td>
-      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
-    </tr>
-    <tr>
-      <td style="padding: 15px;padding-left:2em;background-color: #dbd3bf;">4</td>
-      <td style="padding: 15px;background-color: #dbd3bf;">Hackathon</td>
-      <td style="padding: 15px;background-color: #dbd3bf;"><button class="bluebutton">View</button></td>
-  </tr>
+
   
 
   

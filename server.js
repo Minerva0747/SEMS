@@ -21,6 +21,10 @@ res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   next();
 });  
 
+app.use(bodyParser.urlencoded({limit : '10mb' , extended : false}));
+app.use(bodyParser.json());
+
+
 const indexRouter = require('./routes/index')
 const signupRouter = require('./routes/signup')
 const homeRouter = require('./routes/home')
@@ -52,8 +56,6 @@ app.use(express.static(__dirname + '/public'));
 
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({limit : '10mb' , extended : false}));
-app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
     res.json({ message: "API Working" });

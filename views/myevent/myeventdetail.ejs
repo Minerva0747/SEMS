@@ -1,87 +1,168 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="/public/MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a href="/home">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a class="active">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
-</div>
-<div class ="homevent">
-    English Language Day
-    <button class="bluebutton" onclick="location.href='';" style="width:8em;margin-left:1em;" >SIGN OFF</button>
-    <button class="bluebutton" onclick="location.href='/myevent/updateMyevent';" style="width:8em;margin-left:1em;" >UPDATE</button>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="/public/MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
+    </div>
 
-    
-    <button class="bluebutton" type="submit" style="width:13em; float:right;margin-right:1em;background-color:#E16E6E" >CANCEL EVENT</button>
-    <button class="whitebutton"onclick="location.href='/myevent';" style="float:right;width:8em;margin-right:1em;">Back</button>
-    <hr>
-    <button class="bluebutton" onclick="location.href='';" style="width:11em;margin-left:1em;" >Write QR Code</button>
-    <button class="bluebutton" onclick="location.href='/myevent/viewattendance';" style="width:11em;margin-left:1em;" >View Attendance</button>
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
+
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/profile" style="float: right">PROFILE</a>
+    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a class="active" style="float: right">MyEVENT</a>
+    <a href="/participation" style="float: right">PARTICIPATION</a>
+    <a href="/home" style="float: right">HOME</a>
+  </div>
+</div>
+<div class="homevent">
+  <%= event.eventName %>
+  <form class="formBtn" action="/myEvent/signoff/<%= event.id %>" method="POST">
+    <button
+      class="bluebutton"
+      type="submit"
+      onclick="location.href='';"
+      style="width: 8em; margin-left: 1em"
+    >
+      SIGN OFF
+    </button>
+  </form>
+
+  <button
+    class="bluebutton"
+    onclick="location.href='/myevent/updateMyevent/<%= event.id %>';"
+    style="width: 8em; margin-left: 1em"
+  >
+    UPDATE
+  </button>
+
+  <form class="formBtn" action="/myEvent/cancel/<%= event.id %>" method="POST">
+    <button
+      class="bluebutton"
+      type="submit"
+      style="
+        width: 13em;
+        float: right;
+        margin-right: 1em;
+        background-color: #e16e6e;
+      "
+    >
+      CANCEL EVENT
+    </button>
+  </form>
+  <button
+    class="whitebutton"
+    onclick="location.href='/myevent';"
+    style="float: right; width: 8em; margin-right: 1em"
+  >
+    Back
+  </button>
+  <hr />
+  <form class="formBtn">
+    <button
+      class="bluebutton"
+      onclick="location.href='';"
+      style="width: 11em; margin-left: 1em"
+    >
+      Write QR Code
+    </button>
+  </form>
+  <form class="formBtn">
+    <button
+      class="bluebutton"
+      onclick="location.href='/myevent/viewattendance';"
+      style="width: 11em; margin-left: 1em"
+    >
+      View Attendance
+    </button>
+  </form>
 </div>
 <div class="row2">
-    <div class="column2">
-        <div>
-            <img src="/public/eng1.jpg" alt="eng poster" width="350" >
-            <br>
-            <form>
-                <label for="id"style="text-align:left;padding-top:1em;">Update Poster</label><br>
-                <input type="file" id="posterFile" name="poster">
-                <button style="margin-top:1em;">Submit</button>
-            </form>
-        </div>
-    </div>
-    <div class="column2"style="border-left: 4px solid #707070;">
-        <div class="pDetails">
-            <table>
-                <tr >
-                  <td style="padding:0.7em;">Date</td>
-                  <td>: 12 November 2021</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Time</td>
-                  <td>: 8.00 am - 1.00 pm</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Venue</td>
-                  <td>: Public</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Organizer</td>
-                  <td>: English Society Club</td>
-                </tr>
-                <tr>
-                    <td style="padding:0.7em;">Activities</td>
-                    <td >: 1. Speak English Language</td>
-                </tr>
-                <tr>
-                    <td style="padding:0.7em;"></td>
-                    <td style="padding-left:0.5em;"> 2. Read English Book</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="padding-left:0.5em;padding-top:0.7em;"> 3. Spelling Bee</td>
-                </tr>
-            </table>
-            <p style="padding:0.7em;"> Description : 
-                Hey Guys, English Society Club are here to encourage students on speaking English Language fully on 12th November.
+  <div class="column2">
+    <div>
+      <img src="/public/eng1.jpg" alt="eng poster" width="350" />
+      <br />
+      <form action="/myEvent/updateBanner/<%= event.id %>" method="POST">
+        <label for="id" style="text-align: left; padding-top: 1em"
+          >Update Poster</label
+        ><br />
+        <script>
+          FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginImageResize,
+            FilePondPluginFileEncode
+          );
 
-                </p>
-        </div>
+          FilePond.setOptions({
+            stylePanelAspectRatio: 1 / coverAspectRatio,
+            imageResizeTargetWidth: coverWidth,
+            imageResizeTargetHeight: coverHeight,
+          });
+        </script>
+        <!-- We'll transform this input into a pond -->
+        <input type="file" name="poster" class="filepond" />
+
+        <!-- Load FilePond library -->
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+        <!-- Turn all file input elements into ponds -->
+        <script>
+          FilePond.parse(document.body);
+        </script>
+
+        <button type="submit" margin-top: 1em">Submit</button>
+      </form>
     </div>
+  </div>
+  <div class="column2" style="border-left: 4px solid #707070">
+    <div class="pDetails">
+      <table>
+        <tr>
+          <td style="padding: 0.7em">Date</td>
+          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Time</td>
+          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Venue</td>
+          <td><%= event.venue %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Organizer</td>
+          <td><%= event.organizedBy %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Activities</td>
+          <td>: <%= event.eventActivities %></td>
+
+          </td>
+        </tr>
+      </table>
+      <p style="padding: 0.7em">
+        Description : <%= event.description %>
+      </p>
+    </div>
+  </div>
 </div>
-<div class ="homevent">
-    Previous Activities : 
-    <hr>
+<div class="homevent">
+  Previous Activities :
+  <hr />
 </div>
 <footer class="brownFooter">
-    © Copyright 2020 MySchool system | Designed by MMU
+  © Copyright 2020 MySchool system | Designed by MMU
 </footer>
-

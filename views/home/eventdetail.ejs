@@ -1,96 +1,115 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="/public/MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a class="active">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a href="/myevent">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="/public/MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
+    </div>
+
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
+
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/profile" style="float: right">PROFILE</a>
+    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/myevent" style="float: right">MyEVENT</a>
+    <a href="/participation" style="float: right">PARTICIPATION</a>
+    <a class="active" style="float: right">HOME</a>
+  </div>
 </div>
-<div class ="homevent">
-    Mathematics Club Day
-    <hr>
-    Today date - 
-    <script>
-        var curday = function(sp){
-        today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //As January is 0.
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-        return (dd+sp+mm+sp+yyyy);
-        };
-       
-        document.write(curday('/'));
-      </script>
+<div class="homevent">
+  <td><%= event.eventName %></td>
+  <hr />
+  Today date -
+  <script>
+    var curday = function (sp) {
+      today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //As January is 0.
+      var yyyy = today.getFullYear();
 
+      if (dd < 10) dd = "0" + dd;
+      if (mm < 10) mm = "0" + mm;
+      return dd + sp + mm + sp + yyyy;
+    };
 
-    <button class="whitebutton"onclick="location.href='/home';" style="float:right;width:8em;">Back</button>
-    <button class="bluebutton" type="submit" style="width:8em; float:right;margin-right:1em;" >JOIN NOW</button>
+    document.write(curday("/"));
+  </script>
+
+  <button
+    class="whitebutton"
+    onclick="location.href='/home';"
+    style="float: right; width: 8em"
+  >
+    Back
+  </button>
+
+  <form class="formBtn" action="/event/<%= event.id %>" method="POST">
+    <button
+      class="bluebutton"
+      type="submit"
+      style="
+        width: 13em;
+        float: right;
+        margin-right: 1em;
+      "
+    >
+      JOIN EVENT
+    </button>
+  </form>
+  </form>
 </div>
 <div class="row2">
-    <div class="column2">
-        
-            <img src="/public/MATH_DAY 2.jpg" alt="eng poster" width="350" >
-        
+  <div class="column2">
+    <img src="/public/MATH_DAY 2.jpg" alt="eng poster" width="350" />
+  </div>
+  <div class="column2" style="border-left: 4px solid #707070">
+    <div class="pDetails">
+      <table>
+        <tr>
+          <td style="padding: 0.7em">Date</td>
+          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Time</td>
+          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Venue</td>
+          <td><%= event.venue %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Organizer</td>
+          <td><%= event.organizedBy %></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Activities</td>
+          <td>: <%= event.eventActivities %></td>
+
+          </td>
+        </tr>
+      </table>
+      <p style="padding: 0.7em">
+        Description : <%= event.description %>
+      </p>
     </div>
-    <div class="column2"style="border-left: 4px solid #707070;">
-        <div class="pDetails">
-            <table>
-                <tr >
-                  <td style="padding:0.7em;">Date</td>
-                  <td>: 17 October 2021</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Time</td>
-                  <td>: 1.00 pm - 3.30 pm</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Venue</td>
-                  <td>: Mathematic Club Room</td>
-                </tr>
-                <tr>
-                  <td style="padding:0.7em;">Organizer</td>
-                  <td>: Mathematic Club</td>
-                </tr>
-                <tr>
-                    <td style="padding:0.7em;">Activities</td>
-                    <td >: 1. Sudoku Competition</td>
-                </tr>
-                <tr>
-                    <td style="padding:0.7em;"></td>
-                    <td style="padding-left:0.5em;"> 2. Mathematic Quiz</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="padding-left:0.5em;padding-top:0.7em;"> 3. Food Feast</td>
-                </tr>
-            </table>
-            <p style="padding:0.7em;"> Description : 
-                Mathematics Club invite you to join 
-                our interesting activity. There will 
-                be prizes and food for you to try out. 
-                Come and bring your best friends to 
-                our event, we will have so much fun 
-                in that day. See you there.
-                </p>
-        </div>
-    </div>
+  </div>
 </div>
-<div class ="homevent">
-    Previous Activities : 
-    <hr>
+<div class="homevent">
+  Previous Activities :
+  <hr />
 </div>
 <footer class="brownFooter">
-    © Copyright 2020 MySchool system | Designed by MMU
+  © Copyright 2020 MySchool system | Designed by MMU
 </footer>
-

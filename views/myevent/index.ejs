@@ -1,71 +1,126 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a href="/home">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a class="active">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
-</div>
-<div class ="homevent">
-  Manage MyEvent
-  <hr>
-  Today Date - 
-  <script>
-    var curday = function(sp){
-    today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //As January is 0.
-    var yyyy = today.getFullYear();
-    
-    if(dd<10) dd='0'+dd;
-    if(mm<10) mm='0'+mm;
-    return (dd+sp+mm+sp+yyyy);
-    };
-   
-    document.write(curday('/'));
-  </script>
-  <br>
-  
-</div>
-<div class="row1">
-  <div class="column1" >
-    <div class="eventShape">
-        <p style="text-align:center; padding-top:10px;">English Language Day</p>
-        <img src="eng1.jpg" alt="eng poster" width="350" >
-        <button class="eventBtn" onclick="location.href='/myevent/myeventdetail';">DETAILS</button>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
     </div>
-</div>
-    <div class="column1" >
-        <div class="eventShape">
-            <button class="createBtn" onclick="location.href='/myevent/createmyevent';" >Create New Event ?<br>
-              <i class="fa fa-plus"></i>
-          </button>
-        </div>
-    </div>
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
 
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/profile" style="float: right">PROFILE</a>
+    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a class="active" style="float: right">MyEVENT</a>
+    <a href="/participation" style="float: right">PARTICIPATION</a>
+    <a href="/home" style="float: right">HOME</a>
+  </div>
 </div>
-<div class ="homevent">
-    Manage MyEvent Volunteer
-    <hr>
+<div class="homevent">
+  Manage MyEvent
+  <hr />
+  Today Date -
+  <script>
+    var curday = function (sp) {
+      today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //As January is 0.
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) dd = "0" + dd;
+      if (mm < 10) mm = "0" + mm;
+      return dd + sp + mm + sp + yyyy;
+    };
+
+    document.write(curday("/"));
+  </script>
+  <br />
 </div>
 <div class="row1">
-  <div class="column1" >
-      <div class="eventShape">
-          <p style="text-align:center; padding-top:10px;">English Language Day</p>
-          <img src="eng1.jpg" alt="eng poster" width="350" >
-          <button class="eventBtn" onclick="location.href='/volunteer/managetask';">MANAGE</button>
-      </div>
+  <% for(var i = 0; i < event.length;i++){ %>
+  <div class="column1">
+    <div class="eventShape">
+      <p style="text-align: center; padding-top: 10px">
+        <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
+        <br />
+        <%= event[i].eventName %>
+      </p>
+      <img src="eng1.jpg" alt="eng poster" width="350" />
+      <% if(event[i].eventApproval == false) { %>
+      <button
+        style="background-color: rgb(172, 172, 172); color: black"
+        class="eventBtn"
+        onclick="location.href='/myevent/<%= event[i].id %> ';"
+      >
+        PENDING STATUS
+      </button>
+      <% } else{ %>
+      <button
+        class="eventBtn"
+        onclick="location.href='/myevent/<%= event[i].id %> ';"
+      >
+        DETAILS
+      </button>
+      <% }; %>
+    </div>
   </div>
+  <% } %>
+
+  <div class="column1">
+    <div class="eventShape">
+      <button
+        class="createBtn"
+        onclick="location.href='/myevent/createmyevent';"
+      >
+        Create New Event ?<br />
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="homevent">
+  Manage MyEvent Volunteer
+  <hr />
+</div>
+<div class="row1">
+  <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
+  true) { %>
+  <div class="column1">
+    <div class="eventShape">
+      <p style="text-align: center; padding-top: 10px">
+        <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
+        <br />
+        <%= event[i].eventName %>
+      </p>
+      <img src="eng1.jpg" alt="eng poster" width="350" />
+
+      <button
+        style="background-color: rgb(172, 172, 172); color: black"
+        class="eventBtn"
+        onclick="location.href='/volunteer/managetask/<%= event[i].id %> ';"
+      >
+        PENDING STATUS
+      </button>
+    </div>
+  </div>
+  <% } %> <% } %>
 </div>
 
 <footer class="brownFooter">
-    © Copyright 2020 MySchool system | Designed by MMU
+  © Copyright 2020 MySchool system | Designed by MMU
 </footer>

@@ -141,6 +141,11 @@ router.post(
     }
   );
 
+
+router.post("/logout",auth, async (req,res)=> {
+  res.clearCookie("token");
+  res.redirect('/');
+});
  
 router.post("/update", auth, async (req, res) => {
 

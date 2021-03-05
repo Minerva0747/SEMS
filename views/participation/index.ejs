@@ -1,78 +1,83 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a href="/home">HOME</a>
-        <a class="active">PARTICIPATION</a>
-        <a href="/myevent">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="/public/MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
+    </div>
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
+
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/profile" style="float: right">PROFILE</a>
+    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/myevent" style="float: right">MyEVENT</a>
+    <a class="active" style="float: right">PARTICIPATION</a>
+    <a href="/home" style="float: right">HOME</a>
+  </div>
 </div>
-<div class ="homevent">
+<div class="homevent">
   REMINDER - UPCOMING PARTICIPATION EVENTS
-  <hr>
+  <hr />
   Today date -
   <script>
-    var curday = function(sp){
-    today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //As January is 0.
-    var yyyy = today.getFullYear();
-    
-    if(dd<10) dd='0'+dd;
-    if(mm<10) mm='0'+mm;
-    return (dd+sp+mm+sp+yyyy);
+    var curday = function (sp) {
+      today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //As January is 0.
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) dd = "0" + dd;
+      if (mm < 10) mm = "0" + mm;
+      return dd + sp + mm + sp + yyyy;
     };
-   
-    document.write(curday('/'));
-  </script> 
+
+    document.write(curday("/"));
+  </script>
 </div>
 <div class="row1">
-  <div class="column1" >
-      <div class="eventShape">
-          <p style="text-align:center; padding-top:10px;">Mathematics Club Day</p>
-          <img src="MATH_DAY.jpg" alt="eng poster" width="350" >
-          <button class="eventBtn" onclick="location.href='/participation/epartdetail';">DETAILS</button>
-      </div>
-  </div>
-  <div class="column1" >
-      <div class="eventShape">
-          <p style="text-align:center; padding-top:10px;">Science Day</p>
-          <img src="science2.jpg" alt="eng poster" width="350" >
-          <button class="eventBtn">DETAILS</button>
-      </div>
-  </div>
-  <div class="column1" >
-      <div class="eventShape">
-        <button class="createBtn" onclick="location.href='/home';" >Join More Event ?<br>
-          <i class="fa fa-plus"></i>
+  <% for(var i = 0; i < event.length;i++){ %>
+  <div class="column1">
+    <div class="eventShape">
+      <p style="text-align: center; padding-top: 10px">
+        <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
+        <br />
+        <%= event[i].eventName %>
+      </p>
+      <img src="eng1.jpg" alt="eng poster" width="350" />
+
+      <button
+        class="eventBtn"
+        onclick="location.href='/event/<%= event[i].id %> ';"
+      >
+        DETAILS
       </button>
-      </div>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="column1">
+    <div class="eventShape">
+      <button class="createBtn" onclick="location.href='/home';">
+        Join More Event ?<br />
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
   </div>
 </div>
-
-<div class ="homevent" >
-    PAST PARTICIPATION EVENTS
-    <hr>
-</div>
-<div class="row1">
-  <div class="column1" >
-      <div class="eventShape">
-          <p style="text-align:center; padding-top:10px;">Board Game Exhibition</p>
-          <img src="boardgame.jpg" alt="eng poster" width="350" >
-          <button class="eventBtn" onclick="location.href='/participation/pastevent';">DETAILS</button>
-      </div>
-  </div>
-  
-  
-</div>
-
 
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU

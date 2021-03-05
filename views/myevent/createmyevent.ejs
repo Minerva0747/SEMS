@@ -1,60 +1,117 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="/public//MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a href="/home">HOME</a>
-        <a href="/participation">PARTICIPATION</a>
-        <a class="active">MyEVENT</a>
-        <a href="/volunteer">VOLUNTEER</a>
-        <a href="/profile">PROFILE</a>
-        <a href="#">LOG-OUT</a>
-      </div>
-</div>
-<div class="updateform">
-    <h3>Create New Event </h3>
-    <hr class="new1">
-</div>
-<div class="updateform">
-    <div class="breakform ">
-        <form  action="/event/create" method="POST"  >
-            <label for="id" style="text-align:left;">EVENT TITLE (cannot be changed)</label><br>
-            <input type="text" placeholder="Title" id = "title" name="eventName" >
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">ORGANIZER</label><br>
-            <input type="text" placeholder="by.." id = "organizer" name="organizedBy" >
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">EVENT START</label><br>
-            <input type="date"  id = "date" name="eventStartDate" >
-            <input type="time"  id = "time" name="eventStartTime" >
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">EVENT END</label><br>
-            <input type="date" placeholder="Enter Phone Number" id = "date" name="eventEndDate" >
-            <input type="time"  id = "time" name="eventEndTime" >
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">VENUE</label><br>
-            <input type="text" placeholder="Venue" id = "venue" name="venue" >
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">ACTIVITIES</label><br>
-            <textarea rows="5" cols="50" placeholder="Enter..." name="eventActivities" style="border:1px solid #BCBCBC;padding:1em;"></textarea>
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">DESCRIPTION</label><br>
-            <textarea rows="5" cols="50" placeholder="Enter..." name="description" style="border:1px solid #BCBCBC;padding:1em;"></textarea>
-        <br>
-            <label for="id"style="text-align:left;padding-top:1em;">How many volunteer do you need?</label><br>
-            <input type="number" id="quantity" name="volunteerNeeded" min="0" max="20">
-        <br>
-            <button class="bluebutton" type="submit" style="margin-top: 3em;" >SUBMIT</button>
-            
-
-        </form>
-        <button class="whitebutton" onclick="location.href='/home';" style="margin-bottom: 5em;">Cancel</button>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="/public//MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
     </div>
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
+
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/profile" style="float: right">PROFILE</a>
+    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a class="active" style="float: right">MyEVENT</a>
+    <a href="/participation" style="float: right">PARTICIPATION</a>
+    <a href="/home" style="float: right">HOME</a>
+  </div>
+</div>
+<div class="updateform">
+  <h3>Create New Event</h3>
+  <hr class="new1" />
+</div>
+<div class="updateform">
+  <div class="breakform">
+    <form action="/myevent/createmyevent" method="POST">
+      <label for="id" style="text-align: left"
+        >EVENT TITLE (cannot be changed)</label
+      ><br />
+      <input type="text" placeholder="Title" id="title" name="eventName" />
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >ORGANIZER</label
+      ><br />
+      <input type="text" placeholder="by.." id="organizer" name="organizedBy" />
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >EVENT START</label
+      ><br />
+      <input type="date" id="date" name="eventStartDate" />
+      <input type="time" id="time" name="eventStartTime" />
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >EVENT END</label
+      ><br />
+      <input
+        type="date"
+        placeholder="Enter Phone Number"
+        id="date"
+        name="eventEndDate"
+      />
+      <input type="time" id="time" name="eventEndTime" />
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em">VENUE</label
+      ><br />
+      <input type="text" placeholder="Venue" id="venue" name="venue" />
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >ACTIVITIES</label
+      ><br />
+      <textarea
+        rows="5"
+        cols="50"
+        placeholder="Enter..."
+        name="eventActivities"
+        style="border: 1px solid #bcbcbc; padding: 1em"
+      ></textarea>
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >DESCRIPTION</label
+      ><br />
+      <textarea
+        rows="5"
+        cols="50"
+        placeholder="Enter..."
+        name="description"
+        style="border: 1px solid #bcbcbc; padding: 1em"
+      ></textarea>
+      <br />
+      <label for="id" style="text-align: left; padding-top: 1em"
+        >How many volunteer do you need?</label
+      ><br />
+      <input
+        type="number"
+        id="quantity"
+        name="volunteerNeeded"
+        min="0"
+        max="20"
+      />
+      <br />
+      <button class="bluebutton" type="submit" style="margin-top: 3em">
+        SUBMIT
+      </button>
+    </form>
+    <button
+      class="whitebutton"
+      onclick="location.href='/myevent';"
+      style="margin-top: 1em; margin-bottom: 5em"
+    >
+      Cancel
+    </button>
+  </div>
 </div>
 
 <footer class="brownFooter">
-    © Copyright 2020 MySchool system | Designed by MMU
+  © Copyright 2020 MySchool system | Designed by MMU
 </footer>

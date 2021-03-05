@@ -1,79 +1,65 @@
 <div class="header">
-    <div class="topnav">
-        <div class="navlogo">
-            <img  src="MySchool.png" 
-            alt="logo"  height="65" 
-            style="float:left;padding-right:2em;padding-top:6px;">
-        </div>
-    
-        <a href="#" style="float:right;">LOG-OUT</a>
-        <a href="/admin/approval" style="float:right;">APPROVAL</a>
-        <a class="active" style="float:right;">HOME</a>
+  <div class="topnav">
+    <div class="navlogo">
+      <img
+        src="MySchool.png"
+        alt="logo"
+        height="65"
+        style="float: left; padding-right: 2em; padding-top: 6px"
+      />
     </div>
+
+    <form id="myform" action="/user/logout" method="POST">
+      <a
+        href="#"
+        onclick="document.getElementById('myform').submit()"
+        style="float: right"
+        >LOG-OUT</a
+      >
+    </form>
+
+    <noscript>
+      <input type="submit" value="Submit form!" />
+    </noscript>
+    <a href="/admin/approval" style="float: right">APPROVAL</a>
+    <a class="active" style="float: right">HOME</a>
+  </div>
 </div>
-<div class ="homevent">
-    UPCOMING EVENT
-    <hr>
-    Today date - 
-    <script>
-        var curday = function(sp){
-        today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //As January is 0.
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-        return (dd+sp+mm+sp+yyyy);
-        };
-       
-        document.write(curday('/'));
-      </script>
+<div class="homevent">
+  <h3>Welcome Admin</h3>
+  UPCOMING EVENT
+  <hr />
+  Today date -
+  <script>
+    var curday = function (sp) {
+      today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //As January is 0.
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) dd = "0" + dd;
+      if (mm < 10) mm = "0" + mm;
+      return dd + sp + mm + sp + yyyy;
+    };
+
+    document.write(curday("/"));
+  </script>
 </div>
 
 <div class="row1">
-    <div class="column1" >
-        <div class="eventShape">
-            <p style="text-align:center; padding-top:10px;">Mathematics Club Day</p>
-            <img src="MATH_DAY.jpg" alt="eng poster" width="350" >
-            <button class="eventBtn" onclick="location.href='/admin/admindetail';">DETAILS</button>
-        </div>
-    </div>
-    <div class="column1" >
-        <div class="eventShape">
-            <p style="text-align:center; padding-top:10px;">Science Day</p>
-            <img src="science2.jpg" alt="eng poster" width="350" >
-            <button class="eventBtn">DETAILS</button>
-        </div>
-    </div>
-    <div class="column1" >
-        <div class="eventShape">
-            <p style="text-align:center; padding-top:10px;">Puan Naemah Retirement</p>
-            <img src="pencen.jpg" alt="eng poster" width="350" >
-            <button class="eventBtn">DETAILS</button>
-        </div>
+  <div class="column1">
+    <div class="eventShape">
+      <p style="text-align: center; padding-top: 10px">Mathematics Club Day</p>
+      <img src="MATH_DAY.jpg" alt="eng poster" width="350" />
+      <form>
+        <button class="eventBtn" onclick="location.href='/admin/admindetail';">
+          DETAILS
+        </button>
+      </form>
     </div>
   </div>
-  <div class="row1">
-    <div class="column1" >
-        <div class="eventShape">
-            <p style="text-align:center; padding-top:10px;">Futsal Tournament</p>
-            <img src="futsal1.jpg" alt="eng poster" width="350" >
-            <button class="eventBtn">DETAILS</button>
-        </div>
-    </div>
-    <div class="column1" >
-        <div class="eventShape">
-            <p style="text-align:center; padding-top:10px;">Poetry Slam</p>
-            <img src="poet.jpg" alt="eng poster" width="350" >
-            <button class="eventBtn">DETAILS</button>
-        </div>
-    </div>
-    <div class="column1" >
-        
-    </div>
-  </div>
+</div>
 
 <footer class="brownFooter">
-    © Copyright 2020 MySchool system | Designed by MMU
+  © Copyright 2020 MySchool system | Designed by MMU
 </footer>

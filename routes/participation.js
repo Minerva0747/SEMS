@@ -9,19 +9,22 @@ const User = require("../model/User");
 const Event= require("../model/Event");
 const { response } = require("express");
 
-router.get('/epartdetail', (req, res) => {
-  res.render('participation/epartdetail')
-})
+// router.get('/epartdetail', (req, res) => {
+//   res.render('participation/epartdetail')
+// })
 
-router.get('/pastevent', (req, res) => {
-  res.render('participation/pastevent')
-})
+// router.get('/pastevent', (req, res) => {
+//   res.render('participation/pastevent')
+// })
+
+
 
 router.get("/", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
-      const event = await Event.find({eventApproval : "true"});
-      res.json(event);
+
+      const event = await Event.find({ "eventParticipant" : {$elemMatch: {eventParticipantID : req.user.id }}});
+      res.render('participation/index', {event:event});
     } catch (e) {
       res.send({ message: "Error in Fetching user" });
     }

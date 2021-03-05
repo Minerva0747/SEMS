@@ -22,6 +22,10 @@ router.get('/addtask', (req, res) => {
   res.render('volunteer/addtask')
 })
 
+router.get('/tovolunteer', (req, res) => {
+  res.render('volunteer/tovolunteer')
+})
+
 router.get("/", auth, async (req, res) => {
     try {
     } catch (e) {

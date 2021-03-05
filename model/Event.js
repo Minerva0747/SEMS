@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var uniqueValidator = require('mongoose-unique-validator')
 
 const EventSchema = mongoose.Schema({
   eventName: {
@@ -27,6 +28,11 @@ const EventSchema = mongoose.Schema({
       type : [String],
       required : true
   },
+
+  taskVolunteer :{
+    type : [String],
+    required : true
+},
   description : {
       type : String,
       required : true
@@ -38,25 +44,11 @@ const EventSchema = mongoose.Schema({
   },
 
   posterImage : {
-    data: Buffer,
-    contentType: String
+    type: Buffer,
   },
-
-  photosImageOne : {
-    data: Buffer,
-    contentType: String
+  posterImageType:{
+    type: String,
   },
-
-  photosImageTwo : {
-    data: Buffer,
-    contentType: String
-  },
-
-  photosImageThree : {
-    data: Buffer,
-    contentType: String
-  },
-
   eventApproval : {
     type: Boolean,
     default : false
@@ -69,8 +61,8 @@ const EventSchema = mongoose.Schema({
   ,
 
   eventParticipant: [{
-    eventParticipantID : { type : mongoose.ObjectId , ref: 'Event'},
-    attendanceStatus : { Boolean, defaul : false}
+    eventParticipantID : { type : mongoose.ObjectId , unique:true, },
+    attendanceStatus : { Boolean, default : false}
   }],
 
 
@@ -80,5 +72,7 @@ const EventSchema = mongoose.Schema({
   }]
   
 });
+
+EventSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model("event", EventSchema);
