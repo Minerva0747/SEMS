@@ -34,7 +34,7 @@ router.get("/", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
       const event = await Event.findById(req.params.id);
-      res.render('participation/event/detail', {event : event})
+      res.render('participation/epartdetail', {event : event})
     } catch (e) {
       res.send({ message: "Error in Fetching user" });
     }
