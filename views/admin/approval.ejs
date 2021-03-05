@@ -47,17 +47,28 @@
 </div>
 
 <div class="row1">
+  <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
+  false) { %>
   <div class="column1">
     <div class="eventShape">
-      <p style="text-align: center; padding-top: 10px">English Language Day</p>
-      <img src="/public/eng1.jpg" alt="eng poster" width="350" />
-      <form>
-        <button class="eventBtn" onclick="location.href='/admin/toapprove';">
-          DETAILS
-        </button>
-      </form>
+      <p style="text-align: center; padding-top: 10px">
+        <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
+        <br />
+        <%= event[i].eventName %>
+      </p>
+      <img src="/eng1.jpg" alt="eng poster" width="350" />
+
+      <button
+        class="eventBtn"
+        onclick="location.href='/admin/toapprove/<%= event[i].id %> ';"
+      >
+        DETAILS
+      </button>
     </div>
   </div>
+  <% } %> <% } %>
 </div>
 
 <footer class="brownFooter">

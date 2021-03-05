@@ -21,6 +21,7 @@
     <noscript>
       <input type="submit" value="Submit form!" />
     </noscript>
+
     <a href="/admin/approval" style="float: right">APPROVAL</a>
     <a class="active" style="float: right">HOME</a>
   </div>
@@ -47,17 +48,28 @@
 </div>
 
 <div class="row1">
+  <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
+  true) { %>
   <div class="column1">
     <div class="eventShape">
-      <p style="text-align: center; padding-top: 10px">Mathematics Club Day</p>
-      <img src="MATH_DAY.jpg" alt="eng poster" width="350" />
-      <form>
-        <button class="eventBtn" onclick="location.href='/admin/admindetail';">
-          DETAILS
-        </button>
-      </form>
+      <p style="text-align: center; padding-top: 10px">
+        <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
+        <br />
+        <%= event[i].eventName %>
+      </p>
+      <img src="eng1.jpg" alt="eng poster" width="350" />
+
+      <button
+        class="eventBtn"
+        onclick="location.href='/admin/admindetail/<%= event[i].id %> ';"
+      >
+        DETAILS
+      </button>
     </div>
   </div>
+  <% } %> <% } %>
 </div>
 
 <footer class="brownFooter">

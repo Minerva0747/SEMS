@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
 
 
 router.get('/update', (req, res) => {
-    res.render('profile/update')
+    res.render('profile/update')  
 })
 
 

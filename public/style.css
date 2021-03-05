@@ -399,6 +399,13 @@ hr.login1 {
   width: 1.5em;
   color: white;
 }
+.deleteBtn1 {
+  background-color: rgb(169, 62, 62);
+  color: white;
+  width: Auto;
+  border: none;
+  padding: 15px;
+}
 .taskstyle {
   padding: 1em;
   margin-left: 8em;

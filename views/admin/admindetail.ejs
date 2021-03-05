@@ -61,38 +61,29 @@
       <table>
         <tr>
           <td style="padding: 0.7em">Date</td>
-          <td>: 17 October 2021</td>
+          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Time</td>
-          <td>: 1.00 pm - 3.30 pm</td>
+          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Venue</td>
-          <td>: Mathematic Club Room</td>
+          <td><%= event.venue %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Organizer</td>
-          <td>: Mathematic Club</td>
+          <td><%= event.organizedBy %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Activities</td>
-          <td>: 1. Sudoku Competition</td>
-        </tr>
-        <tr>
-          <td style="padding: 0.7em"></td>
-          <td style="padding-left: 0.5em">2. Mathematic Quiz</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="padding-left: 0.5em; padding-top: 0.7em">3. Food Feast</td>
+          <td>: <%= event.eventActivities %></td>
+
+          </td>
         </tr>
       </table>
       <p style="padding: 0.7em">
-        Description : Mathematics Club invite you to join our interesting
-        activity. There will be prizes and food for you to try out. Come and
-        bring your best friends to our event, we will have so much fun in that
-        day. See you there.
+        Description : <%= event.description %>
       </p>
     </div>
   </div>

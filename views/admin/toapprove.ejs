@@ -26,7 +26,14 @@
   </div>
 </div>
 <div class="homevent">
-  Mathematics Club Day
+  <td><%= event.eventName %></td>
+  <button
+    class="whitebutton"
+    onclick="location.href='/admin/approval';"
+    style="float: right; width: 8em;margin-top:-2em;"
+  >
+    Back
+  </button>
   <hr />
   Today date -
   <script>
@@ -44,64 +51,61 @@
     document.write(curday("/"));
   </script>
 
-  <button
-    class="whitebutton"
-    onclick="location.href='/admin/approval';"
-    style="float: right; width: 8em"
-  >
-    Back
-  </button>
-  <form style="float: right">
-    <button
-      class="bluebutton"
+  
+ 
+  <form class="formBtn" id="myform" action="/admin/todelete/<%= event.id %>" method="POST">
+    <button   class="deleteBtn1"
       type="submit"
-      style="width: 11em; margin-right: 1em"
+
+      href="#"
+      style="float: right"
+      >DELETE EVENT</button
     >
-      APPROVE EVENT
-    </button>
   </form>
+  <form class="formBtn" id="myform" action="/admin/toapprove/<%= event.id %>" method="POST">
+    <button   class="bluebutton"
+      type="submit"
+      style="width: 11em; margin-right: 1em; float: right"
+      href="#"
+     
+      >APPROVE EVENT</button
+    >
+  </form>
+
+ 
 </div>
 <div class="row2">
   <div class="column2">
-    <img src="/public/eng1.jpg" alt="eng poster" width="350" />
+    <img src="/public/MATH_DAY 2.jpg" alt="eng poster" width="350" />
   </div>
   <div class="column2" style="border-left: 4px solid #707070">
     <div class="pDetails">
       <table>
         <tr>
           <td style="padding: 0.7em">Date</td>
-          <td>: 12 November 2021</td>
+          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Time</td>
-          <td>: 8.00 am - 1.00 pm</td>
+          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Venue</td>
-          <td>: Public</td>
+          <td><%= event.venue %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Organizer</td>
-          <td>: English Society Club</td>
+          <td><%= event.organizedBy %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Activities</td>
-          <td>: 1. Speak English Language</td>
-        </tr>
-        <tr>
-          <td style="padding: 0.7em"></td>
-          <td style="padding-left: 0.5em">2. Read English Book</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="padding-left: 0.5em; padding-top: 0.7em">
-            3. Spelling Bee
+          <td>: <%= event.eventActivities %></td>
+
           </td>
         </tr>
       </table>
       <p style="padding: 0.7em">
-        Description : Hey Guys, English Society Club are here to encourage
-        students on speaking English Language fully on 12th November.
+        Description : <%= event.description %>
       </p>
     </div>
   </div>

@@ -129,7 +129,14 @@ router.post(
           (err, token) => {
             if (err) throw err;
             res.cookie( 'token', token);
-            res.redirect('/home');
+            if(user.role == "student")
+            {
+              res.redirect('/home');
+            }
+            else{
+              res.redirect('/admin');
+            }
+          
           }
         );
       } catch (e) {

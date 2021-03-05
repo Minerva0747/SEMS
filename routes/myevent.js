@@ -130,12 +130,10 @@ router.get('/updateMyEvent/:id', auth,async (req, res) => {
         {
           updateQuery.eventName = req.body.eventName;
         }
-    
         if(req.body.organizedBy)
         {
           updateQuery.organizedBy = req.body.organizedBy;
         }
-    
         if(req.body.eventStartDate)
         {
           updateQuery.eventStartDate = req.body.eventStartDate;
@@ -150,12 +148,7 @@ router.get('/updateMyEvent/:id', auth,async (req, res) => {
           updateQuery.eventStartDate = new Date( updateQuery.eventStartDate);
           updateQuery.eventStartDate.setHours( updateQuery.eventStartDate.getHours() + eventStartTimeHour);
           updateQuery.eventStartDate.setMinutes(eventStartTimeMinute);
-      
-      
-              
-
         }
-    
         if(req.body.eventEndDate)
         {
           updateQuery.eventEndDate = req.body.eventEndDate;

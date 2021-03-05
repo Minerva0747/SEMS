@@ -1,41 +1,59 @@
 <div class="any">
-    <div class="bg">
+  <div class="bg"></div>
+  <div class="myform">
+    <div style="text-align: center">
+      <img src="MySchool.png" alt="logo" height="70" />
+      <h2>Welcome to MySchool</h2>
     </div>
-    <div class ="myform">
-        <div style="text-align: center;">
-        <img src="MySchool.png" alt="logo"  height="70">
-        <h2>Welcome to MySchool</h2>
+    <br />
+    <div class="clearfix">
+      <div class="box">
+        <h3>Log in</h3>
+      </div>
+      <div class="box">
+        <h3>
+          <a
+            href="/signup"
+            style="color: rgb(153, 153, 153); text-decoration: none"
+            >Sign up</a
+          >
+        </h3>
+      </div>
     </div>
-        <br>
-        <div class="clearfix">
-            <div class="box" >
-                <h3>Log in</h3>
-            </div>
-            <div class="box" >
-                <h3><a href="/signup" style="color: rgb(153, 153, 153);text-decoration: none;">Sign up</a></h3>
-            </div>
-        </div>
 
-        <hr class="login"style="margin: 0px; width:50%;">
-        <hr class="login1"style="margin: 0px; width:50%;">
+    <hr class="login" style="margin: 0px; width: 50%" />
+    <hr class="login1" style="margin: 0px; width: 50%" />
 
-        <br>
-        <form action="/user/login" method="POST">
-            <label for="id"><img src="id.png" alt="logo"  height="40"></label>
-            <input type="text" placeholder="Enter ID" name="roleID" required>
-            <br>
-            <label for="pwd"><img src="lock.png" alt="logo"  height="40"></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-        <br>
-            <button class="bluebutton" type="submit" style="color:white;margin-top:30px;margin-bottom:30px;margin-left:170px">Login</button>
-        <br>
-        
-            <a href="#" onclick="myFunction()" style="margin-left:175px;"> Forgot password?</a>
-            <a href="/admin">Admin</a>
-            
-        </form>
-    </div>
+    <br />
+    <form action="/user/login" method="POST">
+      <label for="id"><img src="id.png" alt="logo" height="40" /></label>
+      <input type="text" placeholder="Enter ID" name="roleID" required />
+      <br />
+      <label for="pwd"><img src="lock.png" alt="logo" height="40" /></label>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="password"
+        required
+      />
+      <br />
+      <button
+        class="bluebutton"
+        type="submit"
+        style="
+          color: white;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          margin-left: 170px;
+        "
+      >
+        Login
+      </button>
+      <br />
+
+      <a href="#" onclick="myFunction()" style="margin-left: 175px">
+        Forgot password?</a
+      >
+    </form>
+  </div>
 </div>
-
-
-
