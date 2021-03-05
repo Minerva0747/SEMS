@@ -400,7 +400,7 @@ hr.login1 {
   color: white;
 }
 .deleteBtn1 {
-  background-color: rgb(169, 62, 62);
+  background-color: red;
   color: white;
   width: Auto;
   border: none;
@@ -420,4 +420,5 @@ hr.login1 {
   font-size: small;
   margin: 0;
   background-color: white;
+  margin-left: 40em;
 }
