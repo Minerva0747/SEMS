@@ -48,6 +48,18 @@
   <br />
 </div>
 <div class="row1">
+  <div class="column1">
+    <div class="eventShape">
+      <button
+        class="createBtn"
+        onclick="location.href='/myevent/createmyevent';"
+      >
+        Create New Event ?<br />
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
   <% for(var i = 0; i < event.length;i++){ %>
   <div class="column1">
     <div class="eventShape">
@@ -58,8 +70,11 @@
         <br />
         <%= event[i].eventName %>
       </p>
-      <img src="<%= event[i].posterPath %>" alt="eng poster" width="350" />
-      <% if(event[i].eventApproval == false) { %>
+      <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " /> <% if(event[i].eventApproval
+      == false) { %>
       <button
         style="background-color: rgb(172, 172, 172); color: black"
         class="eventBtn"
@@ -78,26 +93,15 @@
     </div>
   </div>
   <% } %>
-
-  <div class="column1">
-    <div class="eventShape">
-      <button
-        class="createBtn"
-        onclick="location.href='/myevent/createmyevent';"
-      >
-        Create New Event ?<br />
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
 </div>
+
 <div class="homevent">
   Manage MyEvent Volunteer
   <hr />
 </div>
 <div class="row1">
-  <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
-  true) { %>
+  <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval
+  ==true) { %>
   <div class="column1">
     <div class="eventShape">
       <p style="text-align: center; padding-top: 10px">
@@ -107,16 +111,22 @@
         <br />
         <%= event[i].eventName %>
       </p>
-      <img src="<%= event[i].posterPath %>" alt="eng poster" width="350" />
+      <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " />
 
-      <button class="eventBtn" onclick="location.href='/volunteer/managetask';">
+      <button
+        class="eventBtn"
+        onclick="location.href='/volunteer/managetask/<%= event[i].id %>';"
+      >
         DETAILS
       </button>
     </div>
   </div>
   <% } %> <% } %>
 </div>
-
+<div style="height: 7em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

@@ -55,39 +55,54 @@
     document.write(curday("/"));
   </script>
 </div>
-<div class="volunteerbox" style="margin-bottom: 5em">
-  <div class="row3">
+<% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
+true){ %>
+<div class="volunteerbox">
+  <div class="row3" style="margin-bottom: 2em">
     <div class="column3 left3" style="text-align: center">
-      <h4>Futsal Tournament</h4>
-      <img src="/public/futsal1.jpg" alt="science poster" width="350" />
+      <h4><%= event[i].eventName %></h4>
+
+      <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " />
     </div>
     <div
       class="column3 right3"
       style="text-align: left; font-size: large; padding: 2em"
     >
       <div>
-        Date - (12/11/2021)
-        <h2 style="float: right; margin-right: 1em">6 Volunteer needed</h2>
+        Date : <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
         <br />
-        Time - 1.30 pm - 5.00 pm <br />
-        Venue - Futsal Arena
+
+        <h2 style="float: right; margin-right: 1em">
+          <%= event[i].volunteerNeeded %> Volunteer needed
+        </h2>
+        <br />
+        Time : <%= event[i].eventStartDate.getHours() + "." +
+        event[i].eventStartDate.getMinutes() + " - " +
+        event[i].eventEndDate.getHours() + "." +
+        event[i].eventEndDate.getMinutes() %> <br />
+        <br />
+        Venue : <%= event[i].venue %>
       </div>
       <div>
         <br />
-        Task
+        Task :
         <br />
-        1. Food and Beverage management
+        <% for(var j = 0; j < event[i].taskVolunteer.length;j++){ %> <%= j+1 %>.
+        <%= event[i].taskVolunteer[j] %>
         <br />
-        2. Facility Management
-        <br />
-        3. Game Management
-        <br />
-        4. Men power needed
+
+        <% } %>
       </div>
       <div>
-        <form>
+        <form method="POST" action="/volunteer/tovolunteer/<%= event[i].id %>">
           <button
             class="bluebutton"
+            type="submit"
             onclick="location.href='';"
             style="
               font-size: medium;
@@ -104,7 +119,7 @@
     </div>
   </div>
 </div>
-
+<% } %> <% } %>
 <div style="margin: 10em">
   <br />
 </div>

@@ -56,18 +56,19 @@ router.post("/:id", auth, async (req, res) => {
     {
     await Event.findByIdAndUpdate(req.params.id,
         {$addToSet: {'eventParticipant': 
-                    {"eventParticipantID": userid}}},  {new:true},
+                    {"eventParticipantID": userid, "attendanceStatus" : "false"}}},  {new:true},
                     function(err, result) {
                       if (err) {
-                        res.redirect("/home");
-                      } else {
-                        res.redirect("/home");                      }
+                        res.redirect("/participation");     
+                    } else {
+                        res.redirect("/participation");     
+                    }
                     }
                   );
                 }
 
                 else{
-                    res.redirect("/home");     
+                    res.redirect("/participation");     
                 }
                 
     }

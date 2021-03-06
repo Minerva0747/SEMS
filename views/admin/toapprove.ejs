@@ -76,7 +76,10 @@
 </div>
 <div class="row2">
   <div class="column2">
-    <img src="/public/MATH_DAY 2.jpg" alt="eng poster" width="350" />
+    <img <% if(event.posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event.posterPath %>"
+      <% } %> alt="poster" style=" width: 20em; height: 20em; display: block;
+      margin-left: auto; margin-right: auto; " />
   </div>
   <div class="column2" style="border-left: 4px solid #707070">
     <div class="pDetails">
@@ -104,16 +107,31 @@
           </td>
         </tr>
       </table>
-      <p style="padding: 0.7em">
+      <p style="padding: 0.7em;margin-right:7em;">
         Description : <%= event.description %>
       </p>
+      <h4 style="padding: 2em;margin-right:7em;background-color: rgb(255, 245, 233);border:1px solid #707070;">
+        Feedback by teacher : 
+        <br><%= event.feedback %>
+      </h4>
     </div>
   </div>
 </div>
 <div class="homevent">
-  Previous Activities :
+  <h2>Give Feedback to Students :</h2>
   <hr />
+  <form class="formBtn" method="POST" action="/admin/updateDescription/<%= event.id %>">
+      <label for="feedback" style="text-align: left; padding-top: 1em">Feedback</label>
+      <br />
+      <textarea rows="5" cols="50" placeholder="Enter fedback..." name="feedback" style="border: 1px solid #bcbcbc; padding: 1em;width:50%"></textarea>
+      <br>
+      <button class="bluebutton" type="submit" style="width:10em">
+        SUBMIT
+      </button>
+    </form>
+  
 </div>
+<div style="height: 7em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

@@ -59,10 +59,10 @@
           <%= event[i].eventName %>
         </p>
         <div style="width: 100%;">
-          <img style="width: 250px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;" src="<%= event[i].posterPath %>" alt="eng poster" width="100" />
+          <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " />
         </div>
         
   
@@ -78,7 +78,8 @@
 
   </div>
 </div>
-
+<div style="height:8em;">
+</div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

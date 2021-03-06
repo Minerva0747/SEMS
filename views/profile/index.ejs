@@ -27,14 +27,17 @@
       </div>
 </div>
 
+
 <div class="biodata">
     <div class="row">
         <div class="column left">
-            <img src="<%= user.profilePath %>" alt="logo"  height="60%" style="padding-left:4em;padding-top:60px;">
+          <img <% if(user.profilePath == null) { %>
+            src="/public/avatar1.png" <% } else { %> src="<%= user.profilePath %>"
+            <% } %> alt="poster" style="width: 15em; height:15em; display: block;
+            margin-left: auto; margin-right: auto; " />
             <form action="/user/update/image" method="POST" >
 
-              <input type="file" name='picture' class ="filepond" style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;">
-
+              <input type="file" name='picture' class ="filepond">
           <script>
             const inputElement = document.querySelector('input[type="file"]');
           const pond = FilePond.create( inputElement );
@@ -44,7 +47,8 @@
           </script>
 
             <button class="bluebutton" type="submit"
-            style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >Update Phtoto </button>
+            style="font-size:medium;margin-top:2em;width:14em;
+            display: block; margin-left: auto;margin-right: auto;" " >Update Phtoto </button>
 
             </form>
         </div>
@@ -86,6 +90,8 @@
         </div>
       </div>
 
+</div>
+<div style="height:10em;">
 </div>
 
 <div class="certList">

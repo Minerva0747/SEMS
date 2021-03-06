@@ -29,7 +29,7 @@
   </div>
 </div>
 <div class="homevent">
-  English Language Day
+  <%= event.eventName %>
 
   <hr />
   <button
@@ -42,74 +42,83 @@
 
   <button
     class="bluebutton"
-    onclick="location.href='/volunteer/addtask';"
+    onclick="location.href='/volunteer/addtask/<%=event.id%>';"
     style="width: 11em; margin-left: 1em"
   >
     Add Task
   </button>
 </div>
+
 <div class="row2">
   <div class="column2">
     <div>
-      <img src="/public/eng1.jpg" alt="eng poster" width="350" />
+      <img <% if(event.posterImageType == null) { %> src="/public/futsal1.jpg"
+      <% } else { %> src="<%= event.posterPath %>" <% } %> alt="poster"
+      style="width: 35em; height:35em; display: block; margin-left: auto;
+      margin-right: auto; " />
     </div>
   </div>
   <div class="column2" style="border-left: 4px solid #707070">
     <div class="pDetails">
-      <table style="width: 100%">
+      <table>
         <tr>
-          <td style="padding: 0.5em">Date</td>
-          <td>: 12 November 2021</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td style="padding: 0.5em">Time</td>
-          <td>: 8.00 am - 1.00 pm</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td style="padding: 0.5em">Venue</td>
-          <td>: Public</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td style="padding: 0.5em">Volunteer</td>
-          <td>: 3</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td style="padding: 0.5em">Tasks</td>
-          <td>: 1. Library Management</td>
+          <td style="padding: 0.7em">Date</td>
           <td>
-            <form><button class="deleteBtn">-</button></form>
+            : <%= event.eventStartDate.getDate() + " / " +
+            event.eventStartDate.getMonth() + " / " +
+            event.eventStartDate.getFullYear() + " - " +
+            event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth()
+            + " / " + event.eventEndDate.getFullYear() %>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Time</td>
+          <td>
+            : <%= event.eventStartDate.getHours() + "." +
+            event.eventStartDate.getMinutes() + " - " +
+            event.eventEndDate.getHours() + "." +
+            event.eventEndDate.getMinutes() %>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Venue</td>
+          <td>: <%= event.venue %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Volunteer</td>
+          <td>: <%= event.volunteerNeeded %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.7em">Tasks :</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <% for(var j = 0; j < event.taskVolunteer.length;j++){ %>
+        <tr>
+          <td style="padding: 0.7em"><%= j+1%>.</td>
+          <td><%=event.taskVolunteer[j]%></td>
+          <td>
+            <form method="POST" action="/volunteer/delete/<%=event.id%>">
+              <input
+                type="hidden"
+                id="delete"
+                name="delete"
+                value="<%=event.taskVolunteer[j]%>"
+              />
+              <button class="deleteBtn" type="submit">-</button>
+            </form>
           </td>
         </tr>
-        <tr>
-          <td></td>
-          <td style="padding-bottom: 0.5em">: 2. Food and Beverage</td>
-          <td>
-            <form><button class="deleteBtn">-</button></form>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="padding-bottom: 0.5em">: 3. Club Management</td>
-          <td>
-            <form><button class="deleteBtn">-</button></form>
-          </td>
-        </tr>
+        <% } %>
       </table>
-      <p style="padding: 0.5em">
-        Description : Hey Guys, English Society Club are here to encourage
-        students on speaking English Language fully on 12th November.
-      </p>
     </div>
   </div>
 </div>
-<div class="homevent">
-  Previous Activities :
-  <hr />
-</div>
+<div style="height: 10em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

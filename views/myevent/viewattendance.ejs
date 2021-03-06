@@ -29,12 +29,11 @@
   </div>
 </div>
 <div class="homevent">
-  English Language Day
   <hr />
   View Attendance
   <button
     class="whitebutton"
-    onclick="location.href='/myevent/myeventdetail';"
+    onclick="location.href='/myevent/<%= id %> ';"
     style="float: right; width: 8em"
   >
     Back
@@ -47,62 +46,26 @@
       <th style="padding: 15px; padding-left: 2em">NO</th>
       <th style="padding: 15px">Name</th>
       <th style="padding: 15px">Student ID</th>
+      <th style="padding: 15px">Status</th>
     </tr>
+    <% for(var i = 0; i < data.length;i++){ %>
     <tr>
       <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        1
+        <%= i+1 %>
       </td>
       <td style="padding: 15px; background-color: #dbd3bf">
-        Nur Iffah binti Isa
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01234</td>
-    </tr>
-    <tr>
-      <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        2
+        <%= data[i].name %>
       </td>
       <td style="padding: 15px; background-color: #dbd3bf">
-        Muhammad Iman bin Arsyad
+        <%= data[i].roleID %>
       </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01235</td>
+      <% if(event[i].attendanceStatus) { %>
+      <td style="padding: 15px; background-color: #dbd3bf">YES</td>
+      <% } else{%>
+      <td style="padding: 15px; background-color: #dbd3bf">NO</td>
+      <% }%>
     </tr>
-    <tr>
-      <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        3
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">
-        Lai Cai Xian, Christine
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01236</td>
-    </tr>
-    <tr>
-      <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        4
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">
-        Puspadevi a/p Kamaleshwaran
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01237</td>
-    </tr>
-    <tr>
-      <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        5
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">
-        Nurhazwani Mat Salleh
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01239</td>
-    </tr>
-    <tr>
-      <td style="padding: 15px; padding-left: 2em; background-color: #dbd3bf">
-        6
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">
-        Muhammad Amirul Iman bin Effendee
-      </td>
-      <td style="padding: 15px; background-color: #dbd3bf">A01241</td>
-    </tr>
-
+    <% }%>
     <tr>
       <td style="padding: 12px; height: 6em"></td>
       <td style="padding: 12px"></td>
@@ -110,6 +73,7 @@
     </tr>
   </table>
 </div>
+<div style="height: 7em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

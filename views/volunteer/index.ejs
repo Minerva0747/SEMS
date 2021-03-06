@@ -55,30 +55,40 @@
     document.write(curday("/"));
   </script>
 </div>
+<% for(var i = 0; i < event.length;i++){ %>
 <div class="volunteerbox">
   <div class="row3">
     <div class="column3 left3" style="text-align: center">
-      <h4>Science Day</h4>
-      <img src="science2.jpg" alt="science poster" width="350" />
+      <h4><%= event[i].eventName %></h4>
+      <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " />
     </div>
     <div
       class="column3 right3"
       style="text-align: left; font-size: large; padding: 2em"
     >
       <div>
-        Date - (22/10/2021)
+        Date : <%= event[i].eventStartDate.getDate() + " / " +
+        event[i].eventStartDate.getMonth() + " / " +
+        event[i].eventStartDate.getFullYear() %>
         <br />
-        Time - 1.30 pm- 5.00 pm
-        <br />
-        Science Lab
+        Time : <%= event[i].eventStartDate.getHours() + "." +
+        event[i].eventStartDate.getMinutes() + " - " +
+        event[i].eventEndDate.getHours() + "." +
+        event[i].eventEndDate.getMinutes() %> <br />
+        Venue : <%= event[i].venue %>
       </div>
       <div>
         <br />
-        Task
+        Task :
         <br />
-        1. Facility Management
+        <% for(var j = 0; j < event[i].taskVolunteer.length;j++){ %> <%= j+1 %>.
+        <%= event[i].taskVolunteer[j] %>
         <br />
-        2. Experiment Management
+
+        <% } %>
       </div>
       <div>
         <form>
@@ -99,6 +109,7 @@
     </div>
   </div>
 </div>
+<% } %>
 
 <div style="margin: 10em">
   <br />

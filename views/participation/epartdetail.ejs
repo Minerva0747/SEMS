@@ -29,7 +29,7 @@
   </div>
 </div>
 <div class="homevent">
-  Mathematics Club Day
+  <%= event.eventName %>
   <hr />
   Today date -
   <script>
@@ -57,26 +57,29 @@
 </div>
 <div class="row2">
   <div class="column2">
-    <img src="<%= event.posterPath %>" alt="eng poster" width="350" />
+    <img <% if(event.posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event.posterPath %>"
+      <% } %> alt="poster" style="width: 35em; height:35em; display: block;
+      margin-left: auto; margin-right: auto; " />
   </div>
   <div class="column2" style="border-left: 4px solid #707070">
     <div class="pDetails">
       <table>
         <tr>
           <td style="padding: 0.7em">Date</td>
-          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
+          <td>: <%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Time</td>
-          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
+          <td>: <%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Venue</td>
-          <td><%= event.venue %></td>
+          <td>: <%= event.venue %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Organizer</td>
-          <td><%= event.organizedBy %></td>
+          <td>: <%= event.organizedBy %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Activities</td>
@@ -85,15 +88,13 @@
           </td>
         </tr>
       </table>
-      <p style="padding: 0.7em">
+      <p style="padding: 0.7em;margin-right:7em;">
         Description : <%= event.description %>
       </p>
     </div>
   </div>
 </div>
-<div class="homevent">
-  Previous Activities :
-  <hr />
+<div style="height:10em;">
 </div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU

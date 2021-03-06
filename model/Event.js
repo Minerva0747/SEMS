@@ -54,22 +54,28 @@ const EventSchema = mongoose.Schema({
     default : false
   },
 
+  feedback:{
+    type : String,
+    required:false
+  }
+  ,
+
   eventManagerID: [{
     type : mongoose.ObjectId,
     ref: 'Event'
   }]
   ,
 
+
   eventParticipant: [{
     eventParticipantID : { type : mongoose.ObjectId , unique:true, },
-    attendanceStatus : { Boolean, default : false}
+    attendanceStatus : { type: Boolean, default : false}
   }],
 
 
   eventVolunteerID: [{
-    type :mongoose.ObjectId,
-    ref: 'Event'
-  }]
+    type : mongoose.ObjectId , unique:true}
+  ]
   
 });
 

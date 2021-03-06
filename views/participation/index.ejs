@@ -47,7 +47,17 @@
   </script>
 </div>
 <div class="row1">
+  <div class="column1">
+    <div class="eventShape">
+      <button class="createBtn" onclick="location.href='/home';">
+        Join More Event ?<br />
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
   <% for(var i = 0; i < event.length;i++){ %>
+
   <div class="column1">
     <div class="eventShape">
       <p style="text-align: center; padding-top: 10px">
@@ -57,7 +67,10 @@
         <br />
         <%= event[i].eventName %>
       </p>
-      <img src="<%= event[i].posterPath %>" alt="eng poster" width="350" />
+      <img <% if(event[i].posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
+      margin-left: auto; margin-right: auto; " />
 
       <button
         class="eventBtn"
@@ -68,17 +81,8 @@
     </div>
   </div>
   <% } %>
-
-  <div class="column1">
-    <div class="eventShape">
-      <button class="createBtn" onclick="location.href='/home';">
-        Join More Event ?<br />
-        <i class="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
 </div>
-
+<div style="height: 8em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

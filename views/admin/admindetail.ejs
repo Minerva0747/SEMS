@@ -54,7 +54,10 @@
 </div>
 <div class="row2">
   <div class="column2">
-    <img src="/public/MATH_DAY 2.jpg" alt="eng poster" width="350" />
+    <img <% if(event.posterImageType == null) { %>
+      src="/public/futsal1.jpg" <% } else { %> src="<%= event.posterPath %>"
+      <% } %> alt="poster" style=" width: 35em; height: 35em; display: block;
+      margin-left: auto; margin-right: auto; " />
   </div>
   <div class="column2" style="border-left: 4px solid #707070">
     <div class="pDetails">
@@ -82,16 +85,13 @@
           </td>
         </tr>
       </table>
-      <p style="padding: 0.7em">
+      <p style="padding: 0.7em;margin-right:7em;">
         Description : <%= event.description %>
       </p>
     </div>
   </div>
 </div>
-<div class="homevent">
-  Previous Activities :
-  <hr />
-</div>
+
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU
 </footer>

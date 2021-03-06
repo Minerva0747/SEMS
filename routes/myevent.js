@@ -6,10 +6,45 @@ const router = express.Router();
 const auth = require("./../middleware/auth");
 
 
+var QRCode = require('qrcode')
+
+
 const User = require("../model/User");
 const Event = require("../model/Event");
 
 const imageMimeTypes = ["image/jpeg","image/png","image/gif", "image/jpg"]
+
+
+
+router.post('/attendance/:id', auth, async (req, res) => {
+
+    let event = await Event.findById(req.params.id);
+    let participant = []
+    let attendanceStatus = []
+
+    for (var i=0; i<event.eventParticipant.length; i++){
+      participant.push(event.eventParticipant[i].eventParticipantID)
+      attendanceStatus.push(event.eventParticipant[i].attendanceStatus)
+    }
+
+    let attendance = await User.find().where('_id').in(participant).exec();
+    let data = {}
+    console.log(data)
+    res.render("myevent/viewattendance",{id:req.params.id,data:attendance, event:attendanceStatus});
+ 
+})
+
+
+
+//QR CODE
+router.post('/qrcodepage/:id', (req, res) => {
+  QRCode.toDataURL(req.params.id, function (err, url) {
+
+    res.render('myevent/qrcodepage', {id :req.params.id, qr: url});
+    });
+})
+
+
 
 router.post("/update/image/:id", auth, async (req, res) => {
   
@@ -24,7 +59,7 @@ router.post("/update/image/:id", auth, async (req, res) => {
   }
   await event.save();
 
-  res.redirect("/myevent");
+  res.redirect("/myevent/" + req.params.id );
 
 });
 
@@ -221,23 +256,7 @@ router.get('/updateMyEvent/:id', auth,async (req, res) => {
     
 });
 
-router.post("/updateBanner/:id",auth, async(req,res) =>{
-    
-    let event =  await Event.findById(req.params.id);
-    if (req.body.poster != null && req.body.poster !== '') {
-      saveImage(book, req.body.poster)
-    }
 
-
-
-    try{
-      const e = await event.save();
-      res.redirect("/myevent")
-    }
-    catch{
-
-    }
-});
 
 
 // Cancel Event Student Side
@@ -274,10 +293,6 @@ router.post("/signoff/:id", auth, async (req, res) => {
 });
 
 
-
-// router.get('/viewattendance', (req, res) => {
-//     res.render('myevent/viewattendance')
-// })
 
 
 

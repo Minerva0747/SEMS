@@ -9,6 +9,23 @@ const imageMimeTypes = ['image/jpeg','image/png','images/gif'];
 const User = require("../model/User");
 const Event = require("../model/Event");
 
+router.post("/updateDescription/:id",auth, async(req,res) =>{
+
+
+    await Event.findByIdAndUpdate(
+        req.params.id,
+        {feedback : req.body.feedback}, {new:true},
+        function(err, result) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.redirect("/admin/toapprove/" + req.params.id);
+          }
+        }
+      );
+})
+
+
 router.post('/toapprove/:id',auth, async(req, res) => {
 
 
@@ -19,7 +36,7 @@ router.post('/toapprove/:id',auth, async(req, res) => {
         if (err) {
           res.send(err);
         } else {
-          res.redirect("/admin");
+          res.redirect("/admin/approval");
         }
       }
     );
