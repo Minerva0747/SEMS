@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var uniqueValidator = require('mongoose-unique-validator')
+
 
 const EventSchema = mongoose.Schema({
   eventName: {
@@ -73,6 +73,10 @@ const EventSchema = mongoose.Schema({
   
 });
 
-EventSchema.plugin(uniqueValidator)
+EventSchema.virtual('posterPath').get(function() {
+  if (this.posterImage != null && this.posterImageType != null) {
+    return `data:${this.posterImageType};charset=utf-8;base64,${this.posterImage.toString('base64')}`
+  }
+})
 
 module.exports = mongoose.model("event", EventSchema);

@@ -1,11 +1,37 @@
 const express = require("express");
+
+
 const { check, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const auth = require("./../middleware/auth");
 
+const auth = require("./../middleware/auth");
 const User = require("../model/User");
+
+
+
+const imageMimeTypes = ["image/jpeg","image/png","image/gif", "image/jpg"]
+
+router.post("/update/image", auth, async (req, res) => {
+  
+  let user = await User.findById(req.user.id);
+
+  if(req.body.picture == null) return
+  const profile = JSON.parse(req.body.picture);
+  if(profile != null && imageMimeTypes.includes(profile.type)){
+    user.profilePic =  new Buffer.from(profile.data, 'base64')
+    user.profilePicType = profile.type
+
+  }
+  await user.save();
+
+  res.redirect("/profile");
+
+});
+
+
+
 
 router.post(
     "/signup",
@@ -200,6 +226,18 @@ router.post("/update", auth, async (req, res) => {
       }
     );
   });
+
+
+function saveProfilePic(user, profileEncoded)
+{
+  if(profileEncoded == null) return
+  const profile = JSON.parse(profileEncoded);
+  if(profile != null && imageMimeTypes.includes(profile.type)){
+    user.profilePic =  new Buffer.from(profile.data, 'base64')
+    user.profilePicType = profile.type
+    
+  }
+}
 
 
 

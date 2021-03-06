@@ -8,6 +8,9 @@ const auth = require("./../middleware/auth");
 const User = require("../model/User");
 
 
+
+
+
 router.get("/", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication

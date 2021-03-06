@@ -58,7 +58,7 @@
         <br />
         <%= event[i].eventName %>
       </p>
-      <img src="eng1.jpg" alt="eng poster" width="350" />
+      <img src="<%= event[i].posterPath %>" alt="eng poster" width="350" />
       <% if(event[i].eventApproval == false) { %>
       <button
         style="background-color: rgb(172, 172, 172); color: black"
@@ -107,7 +107,7 @@
         <br />
         <%= event[i].eventName %>
       </p>
-      <img src="eng1.jpg" alt="eng poster" width="350" />
+      <img src="<%= event[i].posterPath %>" alt="eng poster" width="350" />
 
       <button class="eventBtn" onclick="location.href='/volunteer/managetask';">
         DETAILS

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+
 const UserSchema = mongoose.Schema({
   roleID: {
     type: String,
@@ -39,16 +41,27 @@ const UserSchema = mongoose.Schema({
     required: false
   },
 
-  img: {
-    data: Buffer,
-    contentType: String
+  profilePic: {
+    type: Buffer,
+    required: false
+  },
+  
+  profilePicType:{
+    type: String,
+    required : false
   },
 
   createdAt: {
     type: Date,
     default: Date.now()
-  },
+  }
 
 });
+
+UserSchema.virtual('profilePath').get(function() {
+  if (this.profilePic != null && this.profilePicType != null) {
+    return `data:${this.profilePicType};charset=utf-8;base64,${this.profilePic.toString('base64')}`
+  }
+})
 
 module.exports = mongoose.model("user", UserSchema);

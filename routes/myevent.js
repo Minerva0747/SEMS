@@ -4,10 +4,32 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
-const imageMimeTypes = ['image/jpeg','image/png','images/gif'];
+
 
 const User = require("../model/User");
 const Event = require("../model/Event");
+
+const imageMimeTypes = ["image/jpeg","image/png","image/gif", "image/jpg"]
+
+router.post("/update/image/:id", auth, async (req, res) => {
+  
+  let event = await Event.findById(req.params.id);
+
+  if(req.body.poster == null) return
+  const poster = JSON.parse(req.body.poster);
+  if(poster != null && imageMimeTypes.includes(poster.type)){
+    event.posterImage =  new Buffer.from(poster.data, 'base64')
+    event.posterImageType = poster.type
+
+  }
+  await event.save();
+
+  res.redirect("/myevent");
+
+});
+
+
+
 
 router.get('/',auth,  async (req, res) => {
     try {
@@ -257,13 +279,6 @@ router.post("/signoff/:id", auth, async (req, res) => {
 //     res.render('myevent/viewattendance')
 // })
 
-function saveImage(event, posterEncoded){
-    if(posterEncoded == null) return
-    const poster = JSON.parse(posterEncoded);
-    if(poster != null && imageMimeTypes.includes(poster.type)){
-        event.posterImage = new Buffer.from(poster.data, 'base64') 
-        event.posterImageType = poster.type
-    }
-}
+
 
 module.exports = router

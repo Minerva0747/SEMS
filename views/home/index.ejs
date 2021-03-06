@@ -52,12 +52,19 @@
     true) { %>
     <div class="column1">
       <div class="eventShape">
+        
         <p style="text-align: center; padding-top: 10px">
           <%= event[i].eventStartDate.getDate() + " / " + event[i].eventStartDate.getMonth() + " / " + event[i].eventStartDate.getFullYear() %>
           <br>
           <%= event[i].eventName %>
         </p>
-        <img src="eng1.jpg" alt="eng poster" width="350" />
+        <div style="width: 100%;">
+          <img style="width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;" src="<%= event[i].posterPath %>" alt="eng poster" width="100" />
+        </div>
+        
   
         <button
           class="eventBtn"

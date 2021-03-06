@@ -93,37 +93,23 @@
 <div class="row2">
   <div class="column2">
     <div>
-      <img src="/public/eng1.jpg" alt="eng poster" width="350" />
+      <img src="<%= event.posterPath %>" alt="eng poster" width="350" />
       <br />
-      <form action="/myEvent/updateBanner/<%= event.id %>" method="POST">
-        <label for="id" style="text-align: left; padding-top: 1em"
-          >Update Poster</label
-        ><br />
-        <script>
-          FilePond.registerPlugin(
-            FilePondPluginImagePreview,
-            FilePondPluginImageResize,
-            FilePondPluginFileEncode
-          );
+      <form action="/myevent/update/image/<%= event.id %>" method="POST" >
 
-          FilePond.setOptions({
-            stylePanelAspectRatio: 1 / coverAspectRatio,
-            imageResizeTargetWidth: coverWidth,
-            imageResizeTargetHeight: coverHeight,
-          });
-        </script>
-        <!-- We'll transform this input into a pond -->
-        <input type="file" name="poster" class="filepond" />
+        <input type="file" name='poster' class ="filepond" style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;">
 
-        <!-- Load FilePond library -->
-        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script>
+      const inputElement = document.querySelector('input[type="file"]');
+    const pond = FilePond.create( inputElement );
 
-        <!-- Turn all file input elements into ponds -->
-        <script>
-          FilePond.parse(document.body);
-        </script>
 
-        <button type="submit" margin-top: 1em">Submit</button>
+    
+    </script>
+
+      <button class="bluebutton" type="submit"
+      style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >Update Poster </button>
+
       </form>
     </div>
   </div>

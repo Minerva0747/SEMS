@@ -30,12 +30,22 @@
 <div class="biodata">
     <div class="row">
         <div class="column left">
-            <img src="avatar1.png" alt="logo"  height="60%" style="padding-left:4em;padding-top:60px;">
-            <form>
-              
-            <button class="bluebutton" onclick="location.href='#';"
-            style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >
-              UPDATE PHOTO</button>
+            <img src="<%= user.profilePath %>" alt="logo"  height="60%" style="padding-left:4em;padding-top:60px;">
+            <form action="/user/update/image" method="POST" >
+
+              <input type="file" name='picture' class ="filepond" style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;">
+
+          <script>
+            const inputElement = document.querySelector('input[type="file"]');
+          const pond = FilePond.create( inputElement );
+
+ 
+          
+          </script>
+
+            <button class="bluebutton" type="submit"
+            style="font-size:medium;margin-left:4em;margin-top:2em;width:14em;" >Update Phtoto </button>
+
             </form>
         </div>
         <div class="column right" style="border-left: 1px solid rgb(78, 78, 78);height: 510px;">

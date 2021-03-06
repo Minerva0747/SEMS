@@ -6,7 +6,15 @@ const InitiateMongoServer = require("./config/db");
 const cookieParser = require('cookie-parser');
 
 
+
+
+const multer = require("multer");
+
+
+
 InitiateMongoServer();
+
+
 
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
