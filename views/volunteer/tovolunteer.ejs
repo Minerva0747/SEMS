@@ -78,7 +78,8 @@ true){ %>
         <br />
 
         <h2 style="float: right; margin-right: 1em">
-          <%= event[i].volunteerNeeded %> Volunteer needed
+          <%= event[i].volunteerNeeded-event[i].eventVolunteerID.length %>
+          Volunteer needed
         </h2>
         <br />
         Time : <%= event[i].eventStartDate.getHours() + "." +
