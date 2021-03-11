@@ -31,8 +31,9 @@
 <br />
 <div class="volHeader">
   <div class="topnav" style="background-color: white">
-    <a href="/volunteer" style="width: 30%">EVENT YOU VOLUNTEERED</a>
     <a class="active" style="width: 30%">BE A VOLUNTEER!</a>
+    <a href="/volunteer" style="width: 30%">EVENT YOU VOLUNTEERED</a>
+    
   </div>
 </div>
 
@@ -55,15 +56,16 @@
     document.write(curday("/"));
   </script>
 </div>
-<% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
-true){ %>
+<% for(var i = 0; i < event.length;i++){ %> 
+<% if(event[i].eventApproval == true && (event[i].volunteerNeeded - event[i].eventVolunteerID.length) >= 1
+ && event[i].signOffstatus == false){ %>
 <div class="volunteerbox">
   <div class="row3" style="margin-bottom: 2em">
     <div class="column3 left3" style="text-align: center">
       <h4><%= event[i].eventName %></h4>
 
       <img <% if(event[i].posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      src="/public/eventplacement.jpg" <% } else { %> src="<%= event[i].posterPath %>"
       <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
       margin-left: auto; margin-right: auto; " />
     </div>
@@ -73,19 +75,30 @@ true){ %>
     >
       <div>
         Date : <%= event[i].eventStartDate.getDate() + " / " +
-        event[i].eventStartDate.getMonth() + " / " +
-        event[i].eventStartDate.getFullYear() %>
+        (event[i].eventStartDate.getMonth()+1) + " / " +
+        event[i].eventStartDate.getFullYear() + " - " + 
+        event[i].eventEndDate.getDate() + " / " + 
+        (event[i].eventEndDate.getMonth()+1) + " / " + 
+        event[i].eventEndDate.getFullYear() %>
         <br />
+        <%function formatAMPM(date) {
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var ampm = hours >= 12 ? 'pm' : 'am';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? '0'+minutes : minutes;
+          var strTime = hours + ':' + minutes + ' ' + ampm;
+          return strTime;
+        } %>
 
         <h2 style="float: right; margin-right: 1em">
           <%= event[i].volunteerNeeded-event[i].eventVolunteerID.length %>
           Volunteer needed
         </h2>
         <br />
-        Time : <%= event[i].eventStartDate.getHours() + "." +
-        event[i].eventStartDate.getMinutes() + " - " +
-        event[i].eventEndDate.getHours() + "." +
-        event[i].eventEndDate.getMinutes() %> <br />
+        Time : <%= formatAMPM(event[i].eventStartDate) +  " - " +  
+            formatAMPM(event[i].eventEndDate) %> <br />
         <br />
         Venue : <%= event[i].venue %>
       </div>
@@ -93,14 +106,19 @@ true){ %>
         <br />
         Task :
         <br />
-        <% for(var j = 0; j < event[i].taskVolunteer.length;j++){ %> <%= j+1 %>.
+        <% if(event[i].taskVolunteer == null || event[i].taskVolunteer ==  '') { %> 
+            <p>will be updated</p> 
+            <%}  else { %> 
+              <% for(var j = 0; j < event[i].taskVolunteer.length;j++){ %> <%= j+1 %>.
         <%= event[i].taskVolunteer[j] %>
         <br />
 
         <% } %>
+        <% } %>
       </div>
       <div>
-        <form method="POST" action="/volunteer/tovolunteer/<%= event[i].id %>">
+        <form onsubmit="return confirm('Do you really want to volunteer?');" 
+        method="POST" action="/volunteer/tovolunteer/<%= event[i].id %>">
           <button
             class="bluebutton"
             type="submit"

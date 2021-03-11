@@ -20,7 +20,7 @@
           <input type="submit" value="Submit form!" />
         </noscript>
         <a class="active"  style="float: right">PROFILE</a>
-        <a href="/volunteer" style="float: right">VOLUNTEER</a>
+        <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
         <a href="/myevent" style="float: right">MyEVENT</a>
         <a href="/participation" style="float: right">PARTICIPATION</a>
         <a href="/home" style="float: right">HOME</a>
@@ -33,7 +33,7 @@
         <div class="column left">
           <img <% if(user.profilePath == null) { %>
             src="/public/avatar1.png" <% } else { %> src="<%= user.profilePath %>"
-            <% } %> alt="poster" style="width: 15em; height:15em; display: block;
+            <% } %> alt="poster" style="width: 15em; height:18em; display: block;
             margin-left: auto; margin-right: auto; " />
             <form action="/user/update/image" method="POST" >
 
@@ -70,19 +70,43 @@
             </tr>
             <tr>
               <td>Phone Number</td>
-              <td style="text-align:right;"><%= user.phoneNumber %></td>
+              <td style="text-align:right;">
+                <% if(user.phoneNumber == null) { %> 
+                <p style="color:#757575">Update your profile </p>
+                <%} else {%> 
+                <%= user.phoneNumber %>
+                <%}%>
+              </td>
             </tr>
             <tr>
               <td>Address</td>
-              <td style="text-align:right;"><%= user.address %></td>
+              <td style="text-align:right;">
+                <% if(user.address == null) { %>
+                <p style="color:#757575">Update your profile </p>
+                <%} else {%>
+                <%= user.address %>
+                <%}%>
+                </td>
             </tr>
             <tr>
               <td>School</td>
-              <td style="text-align:right;"><%= user.school %></td>
+              <td style="text-align:right;">
+                <% if(user.school == null) { %>
+                <p style="color:#757575">Update your profile </p>
+                <%} else {%>
+                <%= user.school %>
+                <%}%>
+              </td>
             </tr>
             <tr>
               <td>Class</td>
-              <td style="text-align:right;"><%= user.class  %></td>
+              <td style="text-align:right;">
+                <% if(user.class == null) { %>
+                  <p style="color:#757575">Update your profile </p>
+                  <%} else {%>
+                  <%= user.class  %>
+                  <%}%>
+              </td>
             </tr>
             <tr>
           </table>
@@ -94,33 +118,7 @@
 <div style="height:10em;">
 </div>
 
-<div class="certList">
-  <h3>CERTIFICATE SYSTEM</h3>
-  <hr>
-  <table class="tablecert">
-    <tr style="background-color: #F6F2E9;">
-      <th style="padding: 15px;padding-left:2em;">No</th>
-      <th style="padding: 15px;">CERTIFICATE TITLE</th>
-      <th style="padding: 15px;">VIEW</th>
-    </tr>
-    <tr>
-      <td style="padding:15px;padding-left:2em;background-color: #dbd3bf;">1</td>
-      <td style="padding: 15px;background-color: #dbd3bf;">Poetry Competition</td>
-      <td style="padding: 15px;background-color: #dbd3bf;"><form><button class="bluebutton">View</button></form></td>
-    </tr>
 
-  
-
-  
-
-  <tr>
-    <td style="padding: 12px;height:6em;"></td>
-    <td style="padding: 12px;"></td>
-    <td style="padding: 12px;"></td>
-  </tr>
-  </table>
-  
-</div>
 
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU

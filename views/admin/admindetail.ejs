@@ -55,7 +55,7 @@
 <div class="row2">
   <div class="column2">
     <img <% if(event.posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event.posterPath %>"
+      src="/public/eventplacement.jpg" <% } else { %> src="<%= event.posterPath %>"
       <% } %> alt="poster" style=" width: 35em; height: 35em; display: block;
       margin-left: auto; margin-right: auto; " />
   </div>
@@ -64,19 +64,30 @@
       <table>
         <tr>
           <td style="padding: 0.7em">Date</td>
-          <td><%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
+          <td>: <%= event.eventStartDate.getDate() + " / " + (event.eventStartDate.getMonth()+1) + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + (event.eventEndDate.getMonth()+1) + " / " + event.eventEndDate.getFullYear() %></td>
         </tr>
+        <%function formatAMPM(date) {
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var ampm = hours >= 12 ? 'pm' : 'am';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? '0'+minutes : minutes;
+          var strTime = hours + ':' + minutes + ' ' + ampm;
+          return strTime;
+        } %>
         <tr>
           <td style="padding: 0.7em">Time</td>
-          <td><%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
+          <td>: <%= formatAMPM(event.eventStartDate) +  " - " +  
+            formatAMPM(event.eventEndDate) %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Venue</td>
-          <td><%= event.venue %></td>
+          <td>: <%= event.venue %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Organizer</td>
-          <td><%= event.organizedBy %></td>
+          <td>: <%= event.organizedBy %></td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Activities</td>
@@ -88,9 +99,12 @@
       <p style="padding: 0.7em;margin-right:7em;">
         Description : <%= event.description %>
       </p>
+      
     </div>
   </div>
 </div>
+
+
 
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU

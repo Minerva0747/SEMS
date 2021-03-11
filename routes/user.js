@@ -1,28 +1,28 @@
 const express = require("express");
-
-
 const { check, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
 
-
-
 const imageMimeTypes = ["image/jpeg","image/png","image/gif", "image/jpg"]
 
-router.post("/update/image", auth, async (req, res) => {
+
+// update profile image
+router.post("/update/image", auth, async (req, res) => 
+{
   
   let user = await User.findById(req.user.id);
 
-  if(req.body.picture == null) return
-  const profile = JSON.parse(req.body.picture);
-  if(profile != null && imageMimeTypes.includes(profile.type)){
-    user.profilePic =  new Buffer.from(profile.data, 'base64')
-    user.profilePicType = profile.type
+  if(req.body.picture == null) return;
 
+  const profile = JSON.parse(req.body.picture);
+
+  if(profile != null && imageMimeTypes.includes(profile.type))
+  {
+    user.profilePic =  new Buffer.from(profile.data, 'base64');
+    user.profilePicType = profile.type;
   }
   await user.save();
 
@@ -32,7 +32,7 @@ router.post("/update/image", auth, async (req, res) => {
 
 
 
-
+// student sign up
 router.post(
     "/signup",
     [
@@ -40,60 +40,41 @@ router.post(
         .not()
         .isEmpty(),
         check("email", "Please enter a valid email").isEmail(),
-        check("password", "Please enter a valid password").isLength({
+        check("password", "Please enter a valid password").isLength
+        ({
             min: 6
         })
     ],
-    async (req, res) => {
+    async (req, res) => 
+    {
         const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({
-                errors: errors.array()
-            });
+
+        if (!errors.isEmpty()) 
+        {
+            return res.status(400).json({errors: errors.array()});
         }
-
-        const {
-            roleID,
-            name,
-            email,
-            password,
-            role = "student"
-        } = req.body;
+        const { roleID, name, email, password, role = "student"} = req.body;
         try {
-            let user = await User.findOne({
-                email
-            });
-            if (user) {
-                return res.status(400).json({
-                    msg: "User Already Exists"
-                });
+            let user = await User.findOne({email});
+            if (user) 
+            {
+                return res.status(400).json({msg: "User Already Exists"});
             }
-
-            user = new User({
-                roleID,
-                name,
-                email,
-                password,
-                role 
-            });
+            user = new User({roleID, name, email, password, role});
 
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
             console.log(req.body)
             await user.save();
 
-            const payload = {
-                user: {
-                    id: user.id
-                }
-            };
+            const payload = { user: {id: user.id} };
 
-            jwt.sign(
+            jwt.sign
+            (
                 payload,
-                "randomString", {
-                    expiresIn: 10000
-                },
-                (err, token) => {
+                "randomString", {expiresIn: 10000},
+                (err, token) => 
+                {
                     if (err) throw err;
                     res.redirect('/');
                 }
@@ -105,46 +86,37 @@ router.post(
     }
 );
 
-router.post(
+//login authentication
+router.post
+(
     "/login",
     [
         check("roleID", "Please Enter a Valid ID")
         .not()
         .isEmpty(),
-        check("password", "Please enter a valid password").isLength({
-        min: 6
-      })
+        check("password", "Please enter a valid password").isLength({min: 6})
     ],
-    async (req, res) => {
+    async (req, res) => 
+    {
       const errors = validationResult(req);
   
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          errors: errors.array()
-        });
+      if (!errors.isEmpty()) 
+      {
+        return res.status(400).json({errors: errors.array()});
       }
   
       const { roleID, password } = req.body;
-      try {
-        let user = await User.findOne({
-          roleID
-        });
+      try 
+      {
+        let user = await User.findOne({ roleID });
         if (!user)
-          return res.status(400).json({
-            message: "User Not Exist"
-          });
+          return res.status(400).json({ message: "User Not Exist" });
   
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch)
-          return res.status(400).json({
-            message: "Incorrect Password !"
-          });
+          return res.status(400).json({ message: "Incorrect Password !" });
   
-        const payload = {
-          user: {
-            id: user.id
-          }
-        };
+        const payload = { user: { id: user.id } };
   
         jwt.sign(
           payload,
@@ -152,34 +124,39 @@ router.post(
           {
             expiresIn: 86400
           },
-          (err, token) => {
+          (err, token) => 
+          {
             if (err) throw err;
             res.cookie( 'token', token);
             if(user.role == "student")
             {
               res.redirect('/home');
             }
-            else{
+            else
+            {
               res.redirect('/admin');
             }
           
           }
         );
-      } catch (e) {
+      } 
+      catch (e) 
+      {
         console.error(e);
-        res.status(500).json({
-          message: "Server Error"
-        });
+        res.status(500).json({ message: "Server Error" });
       }
     }
   );
 
 
+// logout
 router.post("/logout",auth, async (req,res)=> {
   res.clearCookie("token");
   res.redirect('/');
 });
  
+
+// update student information
 router.post("/update", auth, async (req, res) => {
 
     updateQuery = {};
@@ -228,16 +205,7 @@ router.post("/update", auth, async (req, res) => {
   });
 
 
-function saveProfilePic(user, profileEncoded)
-{
-  if(profileEncoded == null) return
-  const profile = JSON.parse(profileEncoded);
-  if(profile != null && imageMimeTypes.includes(profile.type)){
-    user.profilePic =  new Buffer.from(profile.data, 'base64')
-    user.profilePicType = profile.type
-    
-  }
-}
+
 
 
 

@@ -22,7 +22,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -30,7 +30,8 @@
 </div>
 <div class="homevent">
   <%= event.eventName %>
-  <form class="formBtn" action="/myEvent/signoff/<%= event.id %>" method="POST">
+  <form onsubmit="return confirm('Have you completed the event?');"
+  class="formBtn" action="/myEvent/signoff/<%= event.id %>" method="POST">
     <button
       class="bluebutton"
       type="submit"
@@ -49,7 +50,8 @@
     UPDATE
   </button>
 
-  <form class="formBtn" action="/myEvent/cancel/<%= event.id %>" method="POST">
+  <form onsubmit="return confirm('Are you sure you want to cancel event?');"
+  class="formBtn" action="/myEvent/cancel/<%= event.id %>" method="POST">
     <button
       class="bluebutton"
       type="submit"
@@ -94,7 +96,7 @@
   <div class="column2">
     <div>
       <img <% if(event.posterImageType == null) { %>
-        src="/public/futsal1.jpg" <% } else { %> src="<%= event.posterPath %>"
+        src="/public/eventplacement.jpg" <% } else { %> src="<%= event.posterPath %>"
         <% } %> alt="poster" style="width: 25em; height:25em; display: block;
         margin-left: auto; margin-right: auto; " />
       <br />
@@ -121,11 +123,25 @@
       <table>
         <tr>
           <td style="padding: 0.7em">Date</td>
-          <td>: <%= event.eventStartDate.getDate() + " / " + event.eventStartDate.getMonth() + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth() + " / " + event.eventEndDate.getFullYear() %></td>
+          <td>: <%= event.eventStartDate.getDate() + " / " + (event.eventStartDate.getMonth()+1) + " / " + event.eventStartDate.getFullYear() + " - " + event.eventEndDate.getDate() + " / " + (event.eventEndDate.getMonth()+1) + " / " + event.eventEndDate.getFullYear() %></td>
         </tr>
+        <%function formatAMPM(date) {
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var ampm = hours >= 12 ? 'pm' : 'am';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? '0'+minutes : minutes;
+          var strTime = hours + ':' + minutes + ' ' + ampm;
+          return strTime;
+        } %>
+          
+
         <tr>
           <td style="padding: 0.7em">Time</td>
-          <td>: <%= event.eventStartDate.getHours() + "." + event.eventStartDate.getMinutes()  +  " - " +  event.eventEndDate.getHours() + "." + event.eventEndDate.getMinutes() %></td>
+          <td>: <%= formatAMPM(event.eventStartDate) +  " - " +  
+            formatAMPM(event.eventEndDate) %>
+  </td>
         </tr>
         <tr>
           <td style="padding: 0.7em">Venue</td>

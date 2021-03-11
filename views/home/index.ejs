@@ -21,7 +21,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a href="/myevent" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a class="active" style="float: right">HOME</a>
@@ -49,29 +49,31 @@
 
 <div class="row1">
   <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval ==
-    true) { %>
+    true && event[i].signOffstatus == false) { %>
     <div class="column1">
       <div class="eventShape">
         
         <p style="text-align: center; padding-top: 10px">
-          <%= event[i].eventStartDate.getDate() + " / " + event[i].eventStartDate.getMonth() + " / " + event[i].eventStartDate.getFullYear() %>
+          <%= event[i].eventStartDate.getDate() + " / " + (event[i].eventStartDate.getMonth()+1) + " / " + event[i].eventStartDate.getFullYear() %>
           <br>
           <%= event[i].eventName %>
         </p>
         <div style="width: 100%;">
           <img <% if(event[i].posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      src="/public/eventplacement.jpg" <% } else { %> src="<%= event[i].posterPath %>"
       <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
       margin-left: auto; margin-right: auto; " />
         </div>
         
-  
-        <button
+        
+            
+          <button
           class="eventBtn"
           onclick="location.href='/event/<%= event[i].id %> ';"
-        >
+          >
           DETAILS
         </button>
+      
       </div>
     </div>
     <% } %> <% } %>

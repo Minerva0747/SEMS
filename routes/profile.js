@@ -1,16 +1,9 @@
 const express = require("express");
-const { check, validationResult} = require("express-validator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
-
 const User = require("../model/User");
 
-
-
-
-
+// open profile page
 router.get("/", auth, async (req, res) => {
     try {
       // request.user is getting fetched from Middleware after token authentication
@@ -22,10 +15,10 @@ router.get("/", auth, async (req, res) => {
   });
 
 
-
+// open the update profile page
 router.get('/update', (req, res) => {
     res.render('profile/update')  
-})
+});
 
 
 module.exports = router

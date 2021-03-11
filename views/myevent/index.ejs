@@ -21,7 +21,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -65,16 +65,18 @@
     <div class="eventShape">
       <p style="text-align: center; padding-top: 10px">
         <%= event[i].eventStartDate.getDate() + " / " +
-        event[i].eventStartDate.getMonth() + " / " +
+        (event[i].eventStartDate.getMonth()+1) + " / " +
         event[i].eventStartDate.getFullYear() %>
         <br />
         <%= event[i].eventName %>
       </p>
-      <img <% if(event[i].posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <img 
+      <% if(event[i].posterPath == null) { %>
+      src="/public/eventplacement.jpg" 
+      <% } else { %> src="<%= event[i].posterPath %>"
       <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
-      margin-left: auto; margin-right: auto; " /> <% if(event[i].eventApproval
-      == false) { %>
+      margin-left: auto; margin-right: auto; " /> 
+      <% if(event[i].eventApproval == false) { %>
       <button
         style="background-color: rgb(172, 172, 172); color: black"
         class="eventBtn"
@@ -82,14 +84,21 @@
       >
         PENDING STATUS
       </button>
-      <% } else{ %>
+      <% } else if(event[i].signOffstatus == true){ %>
       <button
         class="eventBtn"
-        onclick="location.href='/myevent/<%= event[i].id %> ';"
+        style="background-color: rgb(172, 172, 172); color: black"
       >
-        DETAILS
+        COMPLETED
       </button>
-      <% }; %>
+      <% } else { %>
+       <button 
+          class="eventBtn"
+          onclick="location.href='/myevent/<%= event[i].id %> ';"
+      >
+          DETAILS
+          </button>
+          <% } %>
     </div>
   </div>
   <% } %>
@@ -99,20 +108,21 @@
   Manage MyEvent Volunteer
   <hr />
 </div>
+
 <div class="row1">
   <% for(var i = 0; i < event.length;i++){ %> <% if(event[i].eventApproval
-  ==true) { %>
+  ==true && event[i].signOffstatus == false) { %>
   <div class="column1">
     <div class="eventShape">
       <p style="text-align: center; padding-top: 10px">
         <%= event[i].eventStartDate.getDate() + " / " +
-        event[i].eventStartDate.getMonth() + " / " +
+        (event[i].eventStartDate.getMonth()+1) + " / " +
         event[i].eventStartDate.getFullYear() %>
         <br />
         <%= event[i].eventName %>
       </p>
-      <img <% if(event[i].posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      <img <% if(event[i].posterPath == null) { %>
+      src="/public/eventplacement.jpg" <% } else { %> src="<%= event[i].posterPath %>"
       <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
       margin-left: auto; margin-right: auto; " />
 
@@ -125,7 +135,9 @@
     </div>
   </div>
   <% } %> <% } %>
+  
 </div>
+
 <div style="height: 7em"></div>
 <footer class="brownFooter">
   © Copyright 2020 MySchool system | Designed by MMU

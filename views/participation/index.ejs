@@ -21,14 +21,14 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a href="/myevent" style="float: right">MyEVENT</a>
     <a class="active" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
   </div>
 </div>
 <div class="homevent">
-  REMINDER - UPCOMING PARTICIPATION EVENTS
+  REMINDER - ALL PARTICIPATED EVENTS
   <hr />
   Today date -
   <script>
@@ -62,22 +62,31 @@
     <div class="eventShape">
       <p style="text-align: center; padding-top: 10px">
         <%= event[i].eventStartDate.getDate() + " / " +
-        event[i].eventStartDate.getMonth() + " / " +
+        (event[i].eventStartDate.getMonth()+1) + " / " +
         event[i].eventStartDate.getFullYear() %>
         <br />
         <%= event[i].eventName %>
       </p>
       <img <% if(event[i].posterImageType == null) { %>
-      src="/public/futsal1.jpg" <% } else { %> src="<%= event[i].posterPath %>"
+      src="/public/eventplacement.jpg" <% } else { %> src="<%= event[i].posterPath %>"
       <% } %> alt="poster" style=" width: 25em; height: 18em; display: block;
       margin-left: auto; margin-right: auto; " />
 
-      <button
-        class="eventBtn"
-        onclick="location.href='/participation/<%= event[i].id %> ';"
-      >
-        DETAILS
-      </button>
+<% if(event[i].signOffstatus == true) { %>
+  <button
+  class="eventBtn"
+  style="background-color: rgb(172, 172, 172); color: black"
+  >
+    COMPLETED
+  </button>
+  <% } else { %>  
+  <button
+  class="eventBtn"
+  onclick="location.href='/participation/<%= event[i].id %> ';"
+  >
+  DETAILS
+</button>
+<% } %>
     </div>
   </div>
   <% } %>

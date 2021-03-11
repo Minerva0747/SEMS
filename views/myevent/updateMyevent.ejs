@@ -22,7 +22,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -90,7 +90,7 @@
     </form>
     <button
       class="whitebutton"
-      onclick="location.href='/myevent/myeventdetail';"
+      onclick="location.href='/myevent/<%= event.id %>';"
       style="margin-top: 1em; margin-bottom: 5em"
     >
       Cancel

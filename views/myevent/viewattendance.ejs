@@ -22,7 +22,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -59,11 +59,13 @@
       <td style="padding: 15px; background-color: #dbd3bf">
         <%= data[i].roleID %>
       </td>
-      <% if(event[i].attendanceStatus) { %>
-      <td style="padding: 15px; background-color: #dbd3bf">YES</td>
+
+      <% if(event[i]) { %>
+      <td style="padding: 15px; background-color: #dbd3bf"><%=event[i]%></td>
       <% } else{%>
-      <td style="padding: 15px; background-color: #dbd3bf">NO</td>
+      <td style="padding: 15px; background-color: #dbd3bf"><%=event[i]%></td>
       <% }%>
+
     </tr>
     <% }%>
     <tr>

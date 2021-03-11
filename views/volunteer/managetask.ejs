@@ -22,7 +22,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -52,7 +52,7 @@
 <div class="row2">
   <div class="column2">
     <div>
-      <img <% if(event.posterImageType == null) { %> src="/public/futsal1.jpg"
+      <img <% if(event.posterImageType == null) { %> src="/public/eventplacement.jpg"
       <% } else { %> src="<%= event.posterPath %>" <% } %> alt="poster"
       style="width: 35em; height:35em; display: block; margin-left: auto;
       margin-right: auto; " />
@@ -65,20 +65,28 @@
           <td style="padding: 0.7em">Date</td>
           <td>
             : <%= event.eventStartDate.getDate() + " / " +
-            event.eventStartDate.getMonth() + " / " +
+            (event.eventStartDate.getMonth()+1) + " / " +
             event.eventStartDate.getFullYear() + " - " +
-            event.eventEndDate.getDate() + " / " + event.eventEndDate.getMonth()
+            event.eventEndDate.getDate() + " / " + (event.eventEndDate.getMonth()+1)
             + " / " + event.eventEndDate.getFullYear() %>
           </td>
           <td></td>
         </tr>
+        <%function formatAMPM(date) {
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var ampm = hours >= 12 ? 'pm' : 'am';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // the hour '0' should be '12'
+          minutes = minutes < 10 ? '0'+minutes : minutes;
+          var strTime = hours + ':' + minutes + ' ' + ampm;
+          return strTime;
+        } %>
         <tr>
           <td style="padding: 0.7em">Time</td>
           <td>
-            : <%= event.eventStartDate.getHours() + "." +
-            event.eventStartDate.getMinutes() + " - " +
-            event.eventEndDate.getHours() + "." +
-            event.eventEndDate.getMinutes() %>
+            : <%= formatAMPM(event.eventStartDate) +  " - " +  
+            formatAMPM(event.eventEndDate) %>
           </td>
           <td></td>
         </tr>
@@ -102,7 +110,8 @@
           <td style="padding: 0.7em"><%= j+1%>.</td>
           <td><%=event.taskVolunteer[j]%></td>
           <td>
-            <form method="POST" action="/volunteer/delete/<%=event.id%>">
+            <form onsubmit="return confirm('Do you confirm to delete task?');"
+            method="POST" action="/volunteer/delete/<%=event.id%>">
               <input
                 type="hidden"
                 id="delete"

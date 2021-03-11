@@ -5,16 +5,7 @@ const event = require("./routes/event");
 const InitiateMongoServer = require("./config/db");
 const cookieParser = require('cookie-parser');
 
-
-
-
-const multer = require("multer");
-
-
-
 InitiateMongoServer();
-
-
 
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
@@ -39,7 +30,6 @@ const homeRouter = require('./routes/home')
 const profileRouter = require('./routes/profile')
 const participationRouter = require('./routes/participation')
 const myeventRouter = require('./routes/myevent')
-const attendanceRouter = require('./routes/attendance')
 const volunteerRouter = require('./routes/volunteer')
 const adminRouter = require('./routes/admin')
 
@@ -57,7 +47,6 @@ app.use('/home', homeRouter)
 app.use('/profile', profileRouter)
 app.use('/public', express.static('public'))
 app.use('/participation', participationRouter)
-app.use('/attendance',attendanceRouter)
 app.use('/myevent', myeventRouter)
 app.use('/volunteer', volunteerRouter)
 app.use('/admin', adminRouter)
@@ -66,20 +55,19 @@ app.use(express.static(__dirname + '/public'));
 
 const PORT = process.env.PORT || 3000;
 
+//get the REST API 
+app.get("/", (req, res) => 
+{
+  res.json({ message: "API Working" });
+});
 
-app.get("/", (req, res) => {
-    res.json({ message: "API Working" });
-  });
+app.use("/user", user);
+app.use("/event", event);
 
-  app.use("/user", user);
-  app.use("/event", event);
-  
-
-
-
-  app.listen(PORT, (req, res) => {
-    console.log(`Server Started at PORT ${PORT}`);
-  });
+app.listen(PORT, (req, res) => 
+{
+  console.log(`Server Started at PORT ${PORT}`);
+});
 
 
 

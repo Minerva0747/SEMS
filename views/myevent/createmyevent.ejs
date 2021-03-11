@@ -21,7 +21,7 @@
       <input type="submit" value="Submit form!" />
     </noscript>
     <a href="/profile" style="float: right">PROFILE</a>
-    <a href="/volunteer" style="float: right">VOLUNTEER</a>
+    <a href="/volunteer/tovolunteer" style="float: right">VOLUNTEER</a>
     <a class="active" style="float: right">MyEVENT</a>
     <a href="/participation" style="float: right">PARTICIPATION</a>
     <a href="/home" style="float: right">HOME</a>
@@ -33,9 +33,10 @@
 </div>
 <div class="updateform">
   <div class="breakform">
-    <form action="/myevent/createmyevent" method="POST">
+    <form onsubmit="return confirm('Do you confirm?');"
+    action="/myevent/createmyevent" method="POST">
       <label for="id" style="text-align: left"
-        >EVENT TITLE (cannot be changed)</label
+        >EVENT TITLE </label
       ><br />
       <input type="text" placeholder="Title" id="title" name="eventName" />
       <br />
